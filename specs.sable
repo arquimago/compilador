@@ -2,7 +2,7 @@ Package Cmenos;
 
 Helpers
   numero=['0'..'9'];
-  letras=['a'..'z']|['A'..'Z'];
+  letra=['a'..'z']|['A'..'Z'];
   mais='+';
   menos='-';
   multiplicacao='*';
@@ -25,11 +25,11 @@ Helpers
   comentario_e='/*';
   comentario_d='*/';
   comentario='//';
-  branco=(' '|13|10);
 
 Tokens
-  ID = letra letra*;
-  NUM = numero numero*;
+  id = letra+letra*;
+  num = numero+numero*;
+  branco=(' '|13|10);
 
 Ignored Tokens
   branco;
