@@ -1,0 +1,34 @@
+Package Cmenos;
+
+Helpers
+  numero=['0'..'9'];
+  letras=['a'..'z']|['A'..'Z'];
+  mais='+';
+  menos='-';
+  multiplicacao='*';
+  divisao='/';
+  menor='<';
+  menor_igual='<=';
+  maior='>';
+  maior_igual='>=';
+  igualdade='==';
+  diferente='!=';
+  atribuicao='=';
+  ponto_virgula=';';
+  virgula=',';
+  parenteses_e='(';
+  parenteses_d=')';
+  colchete_e='[';
+  colchete_d=']';
+  chave_e='{';
+  chave_d='}';
+  comentario_e='/*';
+  comentario_d='*/';
+  comentario='//';
+  branco=(' '|13|10);
+
+Tokens
+
+
+Ignored Tokens
+  branco;
