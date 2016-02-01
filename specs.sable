@@ -28,7 +28,8 @@ Helpers
   branco=(' '|13|10);
 
 Tokens
-
+  ID = letra letra*;
+  NUM = numero numero*;
 
 Ignored Tokens
   branco;
