@@ -50,10 +50,14 @@ Helpers
 
   texto_linha = (caracter*) - comentario_d - comentario_e - nova_linha - enter;
   comentario_linha = comentario_l + texto_linha + nova_linha;
+  comentario_corpo = (caracter*) - comentario_d - comentario_e;
+
+  reservadas = 'else'|'if'|'int'|'string'|'return'|'void'|'while';
 
 Tokens
   ID = letra + letra*;
   NUM = numero + numero*;
+  RESERVADA = reservadas;
   BRANCO = branco;
   COMENTARIO = comentario_linha;
 
