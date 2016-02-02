@@ -1,35 +1,62 @@
 Package Cmenos;
 
 Helpers
-  numero=['0'..'9'];
-  letra=['a'..'z']|['A'..'Z'];
-  mais='+';
-  menos='-';
-  multiplicacao='*';
-  divisao='/';
-  menor='<';
-  menor_igual='<=';
-  maior='>';
-  maior_igual='>=';
-  igualdade='==';
-  diferente='!=';
-  atribuicao='=';
-  ponto_virgula=';';
-  virgula=',';
-  parenteses_e='(';
-  parenteses_d=')';
-  colchete_e='[';
-  colchete_d=']';
-  chave_e='{';
-  chave_d='}';
-  comentario_e='/*';
-  comentario_d='*/';
-  comentario='//';
+  numero = ['0'..'9'];
+  letra = ['a'..'z']|['A'..'Z'];
+  igual = '=';
+  asterisco = '*';
+  barra = '/';
+  ponto_virgula = ';';
+  virgula = ',';
+  parentese_e = '(';
+  parentese_d = ')';
+  colchete_e = '[';
+  colchete_d = ']';
+  chave_e = '{';
+  chave_d = '}';
+
+  mais = '+';
+  menos = '-';
+  multiplicacao = asterisco;
+  divisao = barra;
+  menor = '<';
+  maior = '>';
+
+  menor_igual = menor + igual;
+  maior_igual = maior + igual;
+  igualdade = igual + igual;
+  diferente = '!' + igual;
+
+  parenteses = (parentese_e|parentese_d);
+  colchetes = (colchete_e|colchete_d);
+  chaves = (chave_e|chave_d);
+
+  comentario_e = barra + asterisco;
+  comentario_d = asterisco + barra;
+  comentario_l = barra + barra;
+
+  nova_linha = 10;
+  enter = 13;
+  tab = 9;
+  tab_vertical = 11;
+  espaco = 32;
+  branco = nova_linha|enter|tab|tab_vertical|espaco;
+
+  operador = (mais|menos|divisao|multiplicacao);
+  comparador = (menor|menor_igual|maior|maior_igual|igualdade|diferente);
+  caracter = (0..255);
+  atribuicao = igual;
+  fim_de_linha = ponto_virgula;
+
+  texto_linha = (caracter*) - comentario_d - comentario_e - nova_linha - enter;
+  comentario_linha = comentario_l + texto_linha + nova_linha;
 
 Tokens
-  id = letra+letra*;
-  num = numero+numero*;
-  branco=(' '|13|10);
+  ID = letra + letra*;
+  NUM = numero + numero*;
+  BRANCO = branco;
+  COMENTARIO = comentario_linha;
 
 Ignored Tokens
-  branco;
+  BRANCO;
+  COMENTARIO;
