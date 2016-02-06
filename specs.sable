@@ -38,11 +38,11 @@ Helpers
   nova_linha = 10;
   enter = 13;
   tab = 9;
-  tab_vertical = 11;
   espaco = 32;
-  branco = nova_linha|enter|tab|tab_vertical|espaco;
+  branco = nova_linha|enter|tab|espaco;
 
-  operador = mais|menos|divisao|multiplicacao;
+  soma = mais|menos
+  mult = divisao|multiplicacao;
   comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
   caracter = [0..255];
   atribuicao = igual;
@@ -55,10 +55,18 @@ Helpers
   reservadas = 'else'|'if'|'int'|'string'|'return'|'void'|'while';
 
 Tokens
+
   id = letra letra*;
   num = numero numero*;
   branco = branco;
-  comentario = comentario_linha;
+
+  comentario_linha = comentario_linha;
+  comentario_d = comentario_d;
+  comentario_l = comentario_l;
+
+  soma = soma;
+  mult = mult;
+
   if = 'if';
   else = 'else';
   int = 'int';
