@@ -39,18 +39,20 @@ Helpers
   enter = 13;
   tab = 9;
   espaco = 32;
-  branco = nova_linha|enter|tab|espaco;
+  quebra = enter|nova_linha|enter nova_linha|;
+  branco = espaco|quebra;
 
-  soma = mais|menos
+  soma = mais|menos;
   mult = divisao|multiplicacao;
   comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
   caracter = [0..255];
   atribuicao = igual;
   fim_de_linha = ponto_virgula;
 
-  texto_linha = [caracter-[nova_linha+enter]]*;
-  comentario_linha = comentario_l  texto_linha  nova_linha;
-  comentario_corpo = [caracter - [comentario_d+comentario_e]]*;
+  texto_linha = [caracter-[10+13]]*;
+  texto_bloco = [caracter-[asterisco+barra]]*|(asterisco [caracter-barra])*|([caracter-asterisco] barra)*;
+  comentario_linha = comentario_l texto_linha quebra;
+  comentario_corpo = comentario_e texto_bloco;
 
   reservadas = 'else'|'if'|'int'|'string'|'return'|'void'|'while';
 
@@ -62,7 +64,7 @@ Tokens
 
   comentario_linha = comentario_linha;
   comentario_d = comentario_d;
-  comentario_l = comentario_l;
+  comentario_corpo = comentario_corpo;
 
   soma = soma;
   mult = mult;
@@ -76,5 +78,4 @@ Tokens
   while = 'while';
 
 Ignored Tokens
-  branco;
-  comentario
+  comentario_linha, branco;
