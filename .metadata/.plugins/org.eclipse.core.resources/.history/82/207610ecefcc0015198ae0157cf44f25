@@ -1,0 +1,30 @@
+package Main;
+
+import java.io.PushbackReader;
+
+public class Main {
+
+	public static void main(String[] args) {
+		if (args.length > 0) { 
+	         try { 
+	            /* Form our AST */ 
+	            LexerTh lexer = new LexerTh (new IPushbackReader( 
+	               new FileReader(args[0]), 1024)); 
+	            Parser parser = new Parser(lexer); 
+	            Start ast = parser.parse() ; 
+	  
+	            /* Get our Interpreter going. */ 
+	            Interpreter interp = new Interpreter () ; 
+	            ast.apply(interp) ; 
+	         } 
+	         catch (Exception e) { 
+	            System.out.println (e) ; 
+	         } 
+	      } else { 
+	         System.err.println("Use um arquivo em C- como argumento"); 
+	         System.exit(1); 
+	      } 
+
+	}
+
+}
