@@ -40,7 +40,7 @@ public class LexerTh extends Lexer {
 					contador--;
 				} else {
 					InvalidToken invalido = new InvalidToken("Token Invalido", comentario.getLine(), comentario.getPos());
-					throw new LexerException(invalido, "Token Invalido:" + texto); 
+					throw new LexerException(invalido, ""); 
 				}
 				if(contador!=0){
 					token=null;

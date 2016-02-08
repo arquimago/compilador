@@ -227,7 +227,6 @@ public class Lexer
                             pushBack(accept_length);
                             this.pos = accept_pos;
                             this.line = accept_line;
-                            if(state.id==0) this.state = State.COMENTARIO;
                             return token;
                         }
                     case 5:
@@ -239,7 +238,6 @@ public class Lexer
                             pushBack(accept_length);
                             this.pos = accept_pos;
                             this.line = accept_line;
-                            if(state.id==0) this.state = State.COMENTARIO;
                             return token;
                         }
                     case 6:
