@@ -4,36 +4,22 @@ package Main;
 import java.io.FileReader;
 import java.io.PushbackReader;
 
-import Cmenos.node.EOF;
-import Cmenos.node.TBranco;
-import Cmenos.node.Token;
-
 public class Main {
 
 	public static void main(String[] args) {
 		if (args.length > 0) { 
 	         try { 
 	            LexerTh lexer = new LexerTh (new PushbackReader( 
-	               new FileReader(args[0]), 1024));
-	            
-	            Token atual = null;
-	            atual = lexer.next();
-	    		
-	    		while(!atual.getClass().equals(EOF.class)){
-	    			if(atual.getClass().equals(TBranco.class)){
-	    				System.out.print(atual.getText());
-	    			} else {
-	    				System.out.print(atual.getText());
-	    			}
-	    			atual = lexer.next();
-	    		}
+	               new FileReader(args[0]), 1024));  
 	         } 
 	         catch (Exception e) { 
 	            System.out.println (e) ; 
 	         } 
-	    } else { 
+	      } else { 
 	         System.err.println("Use um arquivo escrito em C- como argumento"); 
 	         System.exit(1); 
-	    }
+	      } 
+
 	}
+
 }

@@ -11,12 +11,19 @@ public interface Analysis extends Switch
     Object getOut(Node node);
     void setOut(Node node, Object o);
 
-    void caseTId(TId node);
-    void caseTNum(TNum node);
-    void caseTBranco(TBranco node);
     void caseTComentarioLinha(TComentarioLinha node);
     void caseTComentarioD(TComentarioD node);
     void caseTComentarioCorpo(TComentarioCorpo node);
+    void caseTIf(TIf node);
+    void caseTElse(TElse node);
+    void caseTInt(TInt node);
+    void caseTString(TString node);
+    void caseTReturn(TReturn node);
+    void caseTVoid(TVoid node);
+    void caseTWhile(TWhile node);
+    void caseTId(TId node);
+    void caseTNum(TNum node);
+    void caseTBranco(TBranco node);
     void caseTSoma(TSoma node);
     void caseTMult(TMult node);
     void caseTComparador(TComparador node);
@@ -26,13 +33,6 @@ public interface Analysis extends Switch
     void caseTParenteses(TParenteses node);
     void caseTColchetes(TColchetes node);
     void caseTChaves(TChaves node);
-    void caseTIf(TIf node);
-    void caseTElse(TElse node);
-    void caseTInt(TInt node);
-    void caseTString(TString node);
-    void caseTReturn(TReturn node);
-    void caseTVoid(TVoid node);
-    void caseTWhile(TWhile node);
     void caseEOF(EOF node);
     void caseInvalidToken(InvalidToken node);
 }

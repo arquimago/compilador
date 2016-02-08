@@ -49,13 +49,21 @@ Helpers
 
 Tokens
 
-  id = letra letra*;
-  num = numero numero*;
-  branco = branco;
-
   comentario_linha = comentario_linha;
   comentario_d = comentario_d;
   comentario_corpo = comentario_corpo;
+
+  if = 'if';
+  else = 'else';
+  int = 'int';
+  string = 'string';
+  return = 'return';
+  void = 'void';
+  while = 'while';
+  
+  id = letra letra*;
+  num = numero numero*;
+  branco = branco;
 
   soma = mais|menos;
   mult = divisao|multiplicacao;
@@ -67,14 +75,6 @@ Tokens
   parenteses = parentese_e|parentese_d;
   colchetes = colchete_e|colchete_d;
   chaves = chave_e|chave_d;
-
-  if = 'if';
-  else = 'else';
-  int = 'int';
-  string = 'string';
-  return = 'return';
-  void = 'void';
-  while = 'while';
 
 Ignored Tokens
   comentario_linha, branco;

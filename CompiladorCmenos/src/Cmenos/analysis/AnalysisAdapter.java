@@ -69,24 +69,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTId(TId node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTNum(TNum node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTBranco(TBranco node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTComentarioLinha(TComentarioLinha node)
     {
         defaultCase(node);
@@ -100,6 +82,66 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTComentarioCorpo(TComentarioCorpo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTIf(TIf node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTElse(TElse node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTInt(TInt node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTString(TString node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTReturn(TReturn node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTVoid(TVoid node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTWhile(TWhile node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTId(TId node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTNum(TNum node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTBranco(TBranco node)
     {
         defaultCase(node);
     }
@@ -154,48 +196,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTChaves(TChaves node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTIf(TIf node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTElse(TElse node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTInt(TInt node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTString(TString node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTReturn(TReturn node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTVoid(TVoid node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTWhile(TWhile node)
     {
         defaultCase(node);
     }

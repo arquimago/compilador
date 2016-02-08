@@ -4,7 +4,6 @@ package Main;
 import java.io.FileReader;
 import java.io.PushbackReader;
 
-import Cmenos.node.EOF;
 import Cmenos.node.TBranco;
 import Cmenos.node.Token;
 
@@ -17,15 +16,14 @@ public class Main {
 	               new FileReader(args[0]), 1024));
 	            
 	            Token atual = null;
-	            atual = lexer.next();
 	    		
-	    		while(!atual.getClass().equals(EOF.class)){
-	    			if(atual.getClass().equals(TBranco.class)){
-	    				System.out.print(atual.getText());
-	    			} else {
-	    				System.out.print(atual.getText());
-	    			}
+	    		while(atual.getClass().toString()!="EOF"){
 	    			atual = lexer.next();
+	    			if(atual.getClass().equals(TBranco.class)){
+	    				System.out.println(atual.getText());
+	    			} else {
+	    				System.out.println(atual.getClass().toString());
+	    			}
 	    		}
 	         } 
 	         catch (Exception e) { 

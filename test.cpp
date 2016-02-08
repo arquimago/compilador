@@ -1,6 +1,6 @@
 //Texto de exemplo código c-
 
-int funcao(string texto){
+int funcao(string texto, int numero){
 	int a = 1;
 	int b = 2;
 	return a+b;
