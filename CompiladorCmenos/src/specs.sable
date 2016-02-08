@@ -41,40 +41,46 @@ Helpers
   caracter = [0..255];
 
   texto_linha = [caracter-[10+13]]*;
-  texto_bloco = [caracter-[asterisco+barra]]*|(asterisco [caracter-barra])*|([caracter-asterisco] barra)*;
+  texto_bloco = [caracter-[asterisco+barra]]*;
   comentario_linha = comentario_l texto_linha quebra;
-  comentario_corpo = comentario_e texto_bloco;
 
   reservadas = 'else'|'if'|'int'|'string'|'return'|'void'|'while';
 
+States
+  normal,comentario;
+
 Tokens
 
-  comentario_linha = comentario_linha;
-  comentario_d = comentario_d;
-  comentario_corpo = comentario_corpo;
+  {normal, comentario} comentario_linha = comentario_linha;
 
-  if = 'if';
-  else = 'else';
-  int = 'int';
-  string = 'string';
-  return = 'return';
-  void = 'void';
-  while = 'while';
-  
-  id = letra letra*;
-  num = numero numero*;
-  branco = branco;
+  {normal -> comentario, comentario}  comentario_e = comentario_e;
+  {comentario} comentario_corpo = texto_bloco;
+  {normal -> comentario, comentario} comentario_d = comentario_d;
+  {comentario} asterisco = asterisco;
+  {comentario} barra = barra;
 
-  soma = mais|menos;
-  mult = divisao|multiplicacao;
+  {normal} if = 'if';
+  {normal} else = 'else';
+  {normal} int = 'int';
+  {normal} string = 'string';
+  {normal} return = 'return';
+  {normal} void = 'void';
+  {normal} while = 'while';
 
-  comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
-  atribuicao = igual;
-  fim_de_linha = ponto_virgula;
-  virgula = ',';
-  parenteses = parentese_e|parentese_d;
-  colchetes = colchete_e|colchete_d;
-  chaves = chave_e|chave_d;
+  {normal} id = letra letra*;
+  {normal} num = numero numero*;
+  {normal} branco = branco;
+
+  {normal} soma = mais|menos;
+  {normal} mult = divisao|multiplicacao;
+
+  {normal} comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
+  {normal} atribuicao = igual;
+  {normal} fim_de_linha = ponto_virgula;
+  {normal} virgula = ',';
+  {normal} parenteses = parentese_e|parentese_d;
+  {normal} colchetes = colchete_e|colchete_d;
+  {normal} chaves = chave_e|chave_d;
 
 Ignored Tokens
   comentario_linha, branco;

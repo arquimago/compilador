@@ -75,13 +75,31 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTComentarioD(TComentarioD node)
+    public void caseTComentarioE(TComentarioE node)
     {
         defaultCase(node);
     }
 
     @Override
     public void caseTComentarioCorpo(TComentarioCorpo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTComentarioD(TComentarioD node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTAsterisco(TAsterisco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTBarra(TBarra node)
     {
         defaultCase(node);
     }

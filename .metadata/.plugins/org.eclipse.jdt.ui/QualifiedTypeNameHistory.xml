@@ -3,4 +3,8 @@
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="Cmenos.lexer.IPushbackReader"/>
 <fullyQualifiedTypeName name="java.io.PushbackReader"/>
+<fullyQualifiedTypeName name="Cmenos.node.Token"/>
+<fullyQualifiedTypeName name="Cmenos.node.TBranco"/>
+<fullyQualifiedTypeName name="Cmenos.node.EOF"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

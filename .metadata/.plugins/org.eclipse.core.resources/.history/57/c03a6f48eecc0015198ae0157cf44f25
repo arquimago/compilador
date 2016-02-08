@@ -1,7 +1,0 @@
-package Main;
-
-import Cmenos.lexer.Lexer;
-
-public class LexerTh extends Lexer {
-
-}

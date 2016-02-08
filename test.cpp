@@ -5,17 +5,20 @@ int funcao(string texto, int numero){
 	int b = 2;
 	return a+b;
 }
-/*comentario
+/* comentario
 de
-bloco*/
+bloco */ 
 
 int main(){
-	string texto = "texto";
+	string texto = blablabla;
 	funcao(texto);
 	if(a>b){
 		a==b;
 	} else {
-		a*b;
+		a*b/c;
 	}
-	/* comentario de bloco /*aninhado /*do capeta */*/*/
+	/* comentario de bloco 	/* aninhado* co/m /* do 
+	capeta */*/
+	*/
+	
 }
