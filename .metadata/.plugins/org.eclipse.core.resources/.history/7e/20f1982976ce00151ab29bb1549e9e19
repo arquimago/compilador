@@ -18,15 +18,16 @@ public class Main {
 	            
 	            Token atual = null;
 	            atual = lexer.next();
-	    		
+	    		int i =0;
+	            
 	    		while(!atual.getClass().equals(EOF.class)){
 	    			if(atual.getClass().equals(TBranco.class)){
 	    				System.out.print(atual.getText());
 	    			} else {
-	    				String id = atual.getClass().getName().replaceAll("Cmenos.node.T"," ");
-	    				System.out.print(id);
+	    				System.out.print(atual.getText());
 	    			}
 	    			atual = lexer.next();
+	    			System.out.print(i);
 	    		}
 	         } 
 	         catch (Exception e) { 

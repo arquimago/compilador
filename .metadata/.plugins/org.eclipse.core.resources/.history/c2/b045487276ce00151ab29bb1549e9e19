@@ -32,12 +32,13 @@ public class LexerTh extends Lexer {
 				contador ++;
 				token = null;
 			} else {
-				System.out.println("entrou no else do lexer pra comentario");
 				texto.append(token.getText());
 				if(token instanceof TComentarioCorpo) {
 					contador++;
+					System.out.println(contador);
 				} else if (token instanceof TComentarioD) {
 					contador--;
+					System.out.println(contador);
 				} else {
 					InvalidToken invalido = new InvalidToken("Token Invalido", comentario.getLine(), comentario.getPos());
 					throw new LexerException(invalido, "Token Invalido:" + texto); 

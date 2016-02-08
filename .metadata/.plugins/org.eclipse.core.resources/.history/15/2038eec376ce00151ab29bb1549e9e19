@@ -32,7 +32,7 @@ public class LexerTh extends Lexer {
 				contador ++;
 				token = null;
 			} else {
-				System.out.println("entrou no else do lexer pra comentario");
+				System.out.println("passou aqui");
 				texto.append(token.getText());
 				if(token instanceof TComentarioCorpo) {
 					contador++;

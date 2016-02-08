@@ -9,7 +9,7 @@ import Cmenos.node.*;
 
 public class LexerTh extends Lexer {
 	
-	private int contador = 0;
+	private int contador;
 	private TComentarioCorpo comentario;
 	private StringBuffer texto;
 	
@@ -29,10 +29,9 @@ public class LexerTh extends Lexer {
 		if(state.equals(State.COMENTARIO)){
 			if(comentario == null){
 				comentario = (TComentarioCorpo) token;
-				contador ++;
+				contador = 1;
 				token = null;
 			} else {
-				System.out.println("entrou no else do lexer pra comentario");
 				texto.append(token.getText());
 				if(token instanceof TComentarioCorpo) {
 					contador++;

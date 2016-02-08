@@ -23,7 +23,7 @@ public class Main {
 	    			if(atual.getClass().equals(TBranco.class)){
 	    				System.out.print(atual.getText());
 	    			} else {
-	    				String id = atual.getClass().getName().replaceAll("Cmenos.node.T"," ");
+	    				String id = atual.getClass().getName().replaceAll("Cmenos.node.T"," ").toUpperCase();
 	    				System.out.print(id);
 	    			}
 	    			atual = lexer.next();

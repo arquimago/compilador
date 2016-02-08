@@ -31,6 +31,7 @@ public class LexerTh extends Lexer {
 				comentario = (TComentarioCorpo) token;
 				contador ++;
 				token = null;
+				System.out.print(comentario.getText());
 			} else {
 				System.out.println("entrou no else do lexer pra comentario");
 				texto.append(token.getText());
