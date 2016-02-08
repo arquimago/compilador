@@ -227,7 +227,6 @@ public class Lexer
                             pushBack(accept_length);
                             this.pos = accept_pos;
                             this.line = accept_line;
-                            if(state.id==0) this.state = State.COMENTARIO;
                             return token;
                         }
                     case 5:
@@ -239,7 +238,6 @@ public class Lexer
                             pushBack(accept_length);
                             this.pos = accept_pos;
                             this.line = accept_line;
-                            if(state.id==0) this.state = State.COMENTARIO;
                             return token;
                         }
                     case 6:
@@ -599,7 +597,6 @@ public class Lexer
     public static class State
     {
         public final static State INITIAL = new State(0);
-        public final static State COMENTARIO = new State(1);
 
         private int id;
 
@@ -660,7 +657,7 @@ public class Lexer
         }
         catch(Exception e)
         {
-            throw new RuntimeException("O arquivo \"lexer.dat\" está faltando ou foi corrompido.");
+            throw new RuntimeException("The file \"lexer.dat\" is either missing or corrupted.");
         }
     }
 }

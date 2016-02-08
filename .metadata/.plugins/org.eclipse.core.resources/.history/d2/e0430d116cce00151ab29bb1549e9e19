@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PushbackReader;
 import Cmenos.lexer.Lexer;
 import Cmenos.lexer.LexerException;
+import Cmenos.lexer.Lexer.State;
 import Cmenos.node.*;
 
 
@@ -46,7 +47,7 @@ public class LexerTh extends Lexer {
 				} else {
 					comentario.setText(texto.toString());
 					token = comentario;
-					state = State.INITIAL;
+					state = State.INICIAL;
 					comentario = null;
 				}
 			}

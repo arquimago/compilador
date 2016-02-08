@@ -27,10 +27,6 @@ Helpers
   igualdade = igual igual;
   diferente = '!' igual;
 
-  parenteses = parentese_e|parentese_d;
-  colchetes = colchete_e|colchete_d;
-  chaves = chave_e|chave_d;
-
   comentario_e = barra asterisco;
   comentario_d = asterisco barra;
   comentario_l = barra barra;
@@ -40,14 +36,9 @@ Helpers
   tab = 9;
   espaco = 32;
   quebra = enter|nova_linha|enter nova_linha|;
-  branco = espaco|quebra;
+  branco = espaco|quebra|tab;
 
-  soma = mais|menos;
-  mult = divisao|multiplicacao;
-  comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
   caracter = [0..255];
-  atribuicao = igual;
-  fim_de_linha = ponto_virgula;
 
   texto_linha = [caracter-[10+13]]*;
   texto_bloco = [caracter-[asterisco+barra]]*|(asterisco [caracter-barra])*|([caracter-asterisco] barra)*;
@@ -66,8 +57,16 @@ Tokens
   comentario_d = comentario_d;
   comentario_corpo = comentario_corpo;
 
-  soma = soma;
-  mult = mult;
+  soma = mais|menos;
+  mult = divisao|multiplicacao;
+
+  comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
+  atribuicao = igual;
+  fim_de_linha = ponto_virgula;
+  virgula = ',';
+  parenteses = parentese_e|parentese_d;
+  colchetes = colchete_e|colchete_d;
+  chaves = chave_e|chave_d;
 
   if = 'if';
   else = 'else';

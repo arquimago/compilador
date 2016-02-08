@@ -117,6 +117,48 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTComparador(TComparador node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTAtribuicao(TAtribuicao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTFimDeLinha(TFimDeLinha node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTVirgula(TVirgula node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTParenteses(TParenteses node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTColchetes(TColchetes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTChaves(TChaves node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTIf(TIf node)
     {
         defaultCase(node);
