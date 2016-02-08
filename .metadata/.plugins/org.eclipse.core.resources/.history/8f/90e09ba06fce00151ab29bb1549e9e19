@@ -1,5 +1,4 @@
 package Main;
-//usar E:\Documents\GitHub\compilador\test.cpp como argumento pra testar!
 
 import java.io.FileReader;
 import java.io.PushbackReader;
