@@ -5,14 +5,14 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TFimDeLinha extends Token
+public final class TPontoVirgula extends Token
 {
-    public TFimDeLinha(String text)
+    public TPontoVirgula(String text)
     {
         setText(text);
     }
 
-    public TFimDeLinha(String text, int line, int pos)
+    public TPontoVirgula(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TFimDeLinha extends Token
     @Override
     public Object clone()
     {
-      return new TFimDeLinha(getText(), getLine(), getPos());
+      return new TPontoVirgula(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTFimDeLinha(this);
+        ((Analysis) sw).caseTPontoVirgula(this);
     }
 }

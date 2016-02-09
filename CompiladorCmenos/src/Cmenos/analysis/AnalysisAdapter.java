@@ -159,6 +159,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTStr(TStr node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTBranco(TBranco node)
     {
         defaultCase(node);
@@ -189,7 +195,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTFimDeLinha(TFimDeLinha node)
+    public void caseTPontoVirgula(TPontoVirgula node)
     {
         defaultCase(node);
     }

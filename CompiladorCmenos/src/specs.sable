@@ -14,6 +14,8 @@ Helpers
   colchete_d = ']';
   chave_e = '{';
   chave_d = '}';
+  aspas_d ='"';
+  aspas_s =''';
 
   mais = '+';
   menos = '-';
@@ -43,6 +45,7 @@ Helpers
   texto_linha = [caracter-[10+13]]*;
   texto_bloco = [caracter-[asterisco+barra]]*;
   comentario_linha = comentario_l texto_linha quebra;
+  str = aspas_d (caracter)* aspas_d| aspas_s (caracter)* aspas_s;
 
   reservadas = 'else'|'if'|'int'|'string'|'return'|'void'|'while';
 
@@ -69,6 +72,7 @@ Tokens
 
   {normal} id = letra letra*;
   {normal} num = numero numero*;
+  {normal} str = str;
   {normal} branco = branco;
 
   {normal} soma = mais|menos;
@@ -76,7 +80,7 @@ Tokens
 
   {normal} comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
   {normal} atribuicao = igual;
-  {normal} fim_de_linha = ponto_virgula;
+  {normal} ponto_virgula = ponto_virgula;
   {normal} virgula = ',';
   {normal} parenteses = parentese_e|parentese_d;
   {normal} colchetes = colchete_e|colchete_d;

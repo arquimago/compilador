@@ -26,12 +26,13 @@ public interface Analysis extends Switch
     void caseTWhile(TWhile node);
     void caseTId(TId node);
     void caseTNum(TNum node);
+    void caseTStr(TStr node);
     void caseTBranco(TBranco node);
     void caseTSoma(TSoma node);
     void caseTMult(TMult node);
     void caseTComparador(TComparador node);
     void caseTAtribuicao(TAtribuicao node);
-    void caseTFimDeLinha(TFimDeLinha node);
+    void caseTPontoVirgula(TPontoVirgula node);
     void caseTVirgula(TVirgula node);
     void caseTParenteses(TParenteses node);
     void caseTColchetes(TColchetes node);

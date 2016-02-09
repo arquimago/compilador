@@ -10,7 +10,8 @@ de
 bloco */ 
 
 int main(){
-	string texto = blablabla;
+	string texto = "blablabla";
+	string outro = 'b';
 	funcao(texto);
 	if(a>b){
 		a==b;
