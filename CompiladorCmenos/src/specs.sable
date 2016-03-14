@@ -68,6 +68,8 @@ Tokens
   {normal} return = 'return';
   {normal} void = 'void';
   {normal} while = 'while';
+  {normal} input = 'input';
+  {normal} output = 'output';
 
   {normal} id = letra letra*;
   {normal} num = numero numero*;
@@ -81,9 +83,41 @@ Tokens
   {normal} atribuicao = igual;
   {normal} ponto_virgula = ponto_virgula;
   {normal} virgula = ',';
-  {normal} parenteses = parentese_e|parentese_d;
-  {normal} colchetes = colchete_e|colchete_d;
-  {normal} chaves = chave_e|chave_d;
+  {normal} parentese_e = parentese_e;
+  {normal} parentese_e = parentese_d;
+  {normal} colchete_e = colchete_e;
+  {normal} colchete_d = colchete_d;
+  {normal} chave_e = chave_e;
+  {normal} chave_d = chave_d;
 
 Ignored Tokens
-  comentario_linha, branco;
+  comentario_linha, branco, comentario_e, comentario_corpo, comentario_d;
+
+Productions
+
+  programa =
+    {declaracoes} declaracoes;
+
+  declaracoes =
+    {declaracoes} declaracoes declaracao |
+    {declaracao} tipo s_declaracao;
+
+  s_declaraco =
+    {funcao} id parentese_e parametros parentese_d colchete_e sequencia colchete_d |
+    {variavel} var;
+
+  var =
+    {nula} id ponto_virgula |
+    {atribuida} id atribuicao valor;
+
+  tipo =
+    {tipo_void} void |
+    {tipo_int} int |
+    {tipo_string} str;
+
+  parametros =
+    {m_parametros} m_parametros virgula parametro |
+    {parametro} param;
+
+  param =
+    {param} tipo id;
