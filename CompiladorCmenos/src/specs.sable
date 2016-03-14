@@ -1,6 +1,7 @@
 Package Cmenos;
 
 Helpers
+
   numero = ['0'..'9'];
   letra = ['a'..'z']|['A'..'Z'];
   igual = '=';
@@ -48,8 +49,11 @@ Helpers
 
   reservadas = 'else'|'if'|'int'|'string'|'return'|'void'|'while';
 
+
 States
+
   normal,comentario;
+
 
 Tokens
 
@@ -90,8 +94,11 @@ Tokens
   {normal} chave_e = chave_e;
   {normal} chave_d = chave_d;
 
+
 Ignored Tokens
+
   comentario_linha, branco, comentario_e, comentario_corpo, comentario_d;
+
 
 Productions
 
@@ -99,25 +106,81 @@ Productions
     {declaracoes} declaracoes;
 
   declaracoes =
-    {declaracoes} declaracoes declaracao |
+    {m_declaracoes} declaracoes declaracao |
     {declaracao} tipo s_declaracao;
 
   s_declaraco =
-    {funcao} id parentese_e parametros parentese_d colchete_e sequencia colchete_d |
+    {funcao_c_param} id parentese_e parametros parentese_d colchete_e comandos colchete_d |
+    {funcao_s_param} id parentese_e parentese_d colchete_e comandos colchete_d |
     {variavel} var;
 
   var =
     {nula} id ponto_virgula |
-    {atribuida} id atribuicao valor;
+    {atribuida} id atribuicao valor ponto_virgula |
+    {matriz_nula} id r_matriz ponto_virgula|
+    {matriz_atribuida} id r_matriz atribuicao chave_e valores chave_d ponto_virgula;
 
   tipo =
-    {tipo_void} void |
-    {tipo_int} int |
-    {tipo_string} str;
+    {t_void} void |
+    {t_int} int |
+    {t_str} str;
 
   parametros =
-    {m_parametros} m_parametros virgula parametro |
+    {m_parametros} parametros virgula parametro |
     {parametro} param;
 
   param =
     {param} tipo id;
+
+  expressao =
+    {exp} exp soma termo |
+    {term} termo;
+
+  termo =
+    {t} termo mult fator |
+    {fat} fator;
+
+  fator =
+    {f} parentese_e expressao parentese_d |
+    {numero} numero_ou_funcao;
+
+  valor =
+    {v_n_or_f} numero_ou_funcao |
+    {v_expressao} expressao |
+    {v_str} str;
+
+  numero_ou_funcao =
+    {numero_int} int|
+    {funcao_geral} chama_funcao;
+
+  r_matriz =
+    {dimensoes} r_matriz colchete_e numero_ou_funcao colchete_d |
+    {dimensao} colchete_e numero_ou_funcao colchete_d;
+
+  valores =
+    {m_valores} valores virgula valor |
+    {um_valor} valor;
+
+  chama_funcao =
+    {c_param} id parentese_e valores parentese_d |
+    {s_param} id parentese_e parentese d;
+
+  comandos =
+    {comandos} tipo var comandos |
+    {comandos} chama_funcao comandos |
+    {comandos} bloco_while comandos |
+    {comandos} bloco_if comandos |
+    {comandos} retorno;
+
+  retorno =
+    {r_void} return |
+    {r_int} return num |
+    {r_str} return str;
+
+  bloco_while =
+    {bl_while} while parentese_e condicao parentese_d chave_e comandos chave_d;
+
+  bloco_if =
+
+  condicao =
+    {cond} valor comparador valor
