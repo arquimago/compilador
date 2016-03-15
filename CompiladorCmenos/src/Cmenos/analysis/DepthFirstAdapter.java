@@ -96,6 +96,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseADeclaracaoListaDeclaracoes(ADeclaracaoListaDeclaracoes node)
     {
         inADeclaracaoListaDeclaracoes(node);
+        if(node.getDeclaracao() != null)
+        {
+            node.getDeclaracao().apply(this);
+        }
         outADeclaracaoListaDeclaracoes(node);
     }
 
@@ -334,27 +338,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getListaParametros().apply(this);
         }
         outAListaParametros(node);
-    }
-
-    public void inAVoidParametros(AVoidParametros node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVoidParametros(AVoidParametros node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVoidParametros(AVoidParametros node)
-    {
-        inAVoidParametros(node);
-        if(node.getVoid() != null)
-        {
-            node.getVoid().apply(this);
-        }
-        outAVoidParametros(node);
     }
 
     public void inAVazioParametros(AVazioParametros node)

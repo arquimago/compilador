@@ -147,12 +147,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAVoidParametros(AVoidParametros node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseAVazioParametros(AVazioParametros node)
     {
         defaultCase(node);

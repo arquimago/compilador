@@ -107,7 +107,7 @@ Productions
 
   lista_declaracoes =
     {lista} lista_declaracoes declaracao |
-    {declaracao} ;
+    {declaracao} declaracao;
 
   declaracao =
     {variavel} variavel |
@@ -127,7 +127,6 @@ Productions
 
   parametros =
     {lista} lista_parametros |
-    {void} void |
     {vazio} ;
 
   lista_parametros =
