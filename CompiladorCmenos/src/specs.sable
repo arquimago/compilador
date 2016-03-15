@@ -107,7 +107,7 @@ Productions
 
   lista_declaracoes =
     {lista} lista_declaracoes declaracao |
-    {declaracao} declaracao;
+    {declaracao} ;
 
   declaracao =
     {variavel} variavel |
@@ -127,6 +127,7 @@ Productions
 
   parametros =
     {lista} lista_parametros |
+    {void} void |
     {vazio} ;
 
   lista_parametros =
@@ -135,13 +136,13 @@ Productions
 
   parametro =
     {simples} tipo id |
-    {matriz} tipo id chave_e chave_d;
+    {matriz} tipo id colchete_e colchete_d;
 
   comandos =
     {declaracoes_locais} colchete_e declaracoes_locais lista_comandos colchete_d;
 
   declaracoes_locais =
-    {lista} declaracoes_locais variavel |
+    {lista} declaracoes_locais var |
     {vazio} ;
 
   lista_comandos =
@@ -178,7 +179,7 @@ Productions
     {id_expressao} id colchete_e expressao colchete_d;
 
   expressao_simples =
-    {comparativo} expressao_simples comparador expressao_aditiva |
+    {comparativo} [exp1]:expressao_aditiva comparador [exp2]:expressao_aditiva |
     {aditiva} expressao_aditiva;
 
   expressao_aditiva =

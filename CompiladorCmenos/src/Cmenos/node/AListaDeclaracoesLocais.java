@@ -8,7 +8,7 @@ import Cmenos.analysis.*;
 public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
 {
     private PDeclaracoesLocais _declaracoesLocais_;
-    private PVariavel _variavel_;
+    private PVar _var_;
 
     public AListaDeclaracoesLocais()
     {
@@ -17,12 +17,12 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
 
     public AListaDeclaracoesLocais(
         @SuppressWarnings("hiding") PDeclaracoesLocais _declaracoesLocais_,
-        @SuppressWarnings("hiding") PVariavel _variavel_)
+        @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
         setDeclaracoesLocais(_declaracoesLocais_);
 
-        setVariavel(_variavel_);
+        setVar(_var_);
 
     }
 
@@ -31,7 +31,7 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
     {
         return new AListaDeclaracoesLocais(
             cloneNode(this._declaracoesLocais_),
-            cloneNode(this._variavel_));
+            cloneNode(this._var_));
     }
 
     @Override
@@ -65,16 +65,16 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
         this._declaracoesLocais_ = node;
     }
 
-    public PVariavel getVariavel()
+    public PVar getVar()
     {
-        return this._variavel_;
+        return this._var_;
     }
 
-    public void setVariavel(PVariavel node)
+    public void setVar(PVar node)
     {
-        if(this._variavel_ != null)
+        if(this._var_ != null)
         {
-            this._variavel_.parent(null);
+            this._var_.parent(null);
         }
 
         if(node != null)
@@ -87,7 +87,7 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
             node.parent(this);
         }
 
-        this._variavel_ = node;
+        this._var_ = node;
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
     {
         return ""
             + toString(this._declaracoesLocais_)
-            + toString(this._variavel_);
+            + toString(this._var_);
     }
 
     @Override
@@ -108,9 +108,9 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
             return;
         }
 
-        if(this._variavel_ == child)
+        if(this._var_ == child)
         {
-            this._variavel_ = null;
+            this._var_ = null;
             return;
         }
 
@@ -127,9 +127,9 @@ public final class AListaDeclaracoesLocais extends PDeclaracoesLocais
             return;
         }
 
-        if(this._variavel_ == oldChild)
+        if(this._var_ == oldChild)
         {
-            setVariavel((PVariavel) newChild);
+            setVar((PVar) newChild);
             return;
         }
 

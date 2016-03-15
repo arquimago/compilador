@@ -24,6 +24,7 @@ public interface Analysis extends Switch
     void caseATStrTipo(ATStrTipo node);
     void caseAFuncaoFuncao(AFuncaoFuncao node);
     void caseAListaParametros(AListaParametros node);
+    void caseAVoidParametros(AVoidParametros node);
     void caseAVazioParametros(AVazioParametros node);
     void caseAMParametrosListaParametros(AMParametrosListaParametros node);
     void caseAParametroListaParametros(AParametroListaParametros node);

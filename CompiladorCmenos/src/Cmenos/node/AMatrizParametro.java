@@ -9,8 +9,8 @@ public final class AMatrizParametro extends PParametro
 {
     private PTipo _tipo_;
     private TId _id_;
-    private TChaveE _chaveE_;
-    private TChaveD _chaveD_;
+    private TColcheteE _colcheteE_;
+    private TColcheteD _colcheteD_;
 
     public AMatrizParametro()
     {
@@ -20,17 +20,17 @@ public final class AMatrizParametro extends PParametro
     public AMatrizParametro(
         @SuppressWarnings("hiding") PTipo _tipo_,
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TChaveE _chaveE_,
-        @SuppressWarnings("hiding") TChaveD _chaveD_)
+        @SuppressWarnings("hiding") TColcheteE _colcheteE_,
+        @SuppressWarnings("hiding") TColcheteD _colcheteD_)
     {
         // Constructor
         setTipo(_tipo_);
 
         setId(_id_);
 
-        setChaveE(_chaveE_);
+        setColcheteE(_colcheteE_);
 
-        setChaveD(_chaveD_);
+        setColcheteD(_colcheteD_);
 
     }
 
@@ -40,8 +40,8 @@ public final class AMatrizParametro extends PParametro
         return new AMatrizParametro(
             cloneNode(this._tipo_),
             cloneNode(this._id_),
-            cloneNode(this._chaveE_),
-            cloneNode(this._chaveD_));
+            cloneNode(this._colcheteE_),
+            cloneNode(this._colcheteD_));
     }
 
     @Override
@@ -100,16 +100,16 @@ public final class AMatrizParametro extends PParametro
         this._id_ = node;
     }
 
-    public TChaveE getChaveE()
+    public TColcheteE getColcheteE()
     {
-        return this._chaveE_;
+        return this._colcheteE_;
     }
 
-    public void setChaveE(TChaveE node)
+    public void setColcheteE(TColcheteE node)
     {
-        if(this._chaveE_ != null)
+        if(this._colcheteE_ != null)
         {
-            this._chaveE_.parent(null);
+            this._colcheteE_.parent(null);
         }
 
         if(node != null)
@@ -122,19 +122,19 @@ public final class AMatrizParametro extends PParametro
             node.parent(this);
         }
 
-        this._chaveE_ = node;
+        this._colcheteE_ = node;
     }
 
-    public TChaveD getChaveD()
+    public TColcheteD getColcheteD()
     {
-        return this._chaveD_;
+        return this._colcheteD_;
     }
 
-    public void setChaveD(TChaveD node)
+    public void setColcheteD(TColcheteD node)
     {
-        if(this._chaveD_ != null)
+        if(this._colcheteD_ != null)
         {
-            this._chaveD_.parent(null);
+            this._colcheteD_.parent(null);
         }
 
         if(node != null)
@@ -147,7 +147,7 @@ public final class AMatrizParametro extends PParametro
             node.parent(this);
         }
 
-        this._chaveD_ = node;
+        this._colcheteD_ = node;
     }
 
     @Override
@@ -156,8 +156,8 @@ public final class AMatrizParametro extends PParametro
         return ""
             + toString(this._tipo_)
             + toString(this._id_)
-            + toString(this._chaveE_)
-            + toString(this._chaveD_);
+            + toString(this._colcheteE_)
+            + toString(this._colcheteD_);
     }
 
     @Override
@@ -176,15 +176,15 @@ public final class AMatrizParametro extends PParametro
             return;
         }
 
-        if(this._chaveE_ == child)
+        if(this._colcheteE_ == child)
         {
-            this._chaveE_ = null;
+            this._colcheteE_ = null;
             return;
         }
 
-        if(this._chaveD_ == child)
+        if(this._colcheteD_ == child)
         {
-            this._chaveD_ = null;
+            this._colcheteD_ = null;
             return;
         }
 
@@ -207,15 +207,15 @@ public final class AMatrizParametro extends PParametro
             return;
         }
 
-        if(this._chaveE_ == oldChild)
+        if(this._colcheteE_ == oldChild)
         {
-            setChaveE((TChaveE) newChild);
+            setColcheteE((TColcheteE) newChild);
             return;
         }
 
-        if(this._chaveD_ == oldChild)
+        if(this._colcheteD_ == oldChild)
         {
-            setChaveD((TChaveD) newChild);
+            setColcheteD((TColcheteD) newChild);
             return;
         }
 

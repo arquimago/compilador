@@ -7,9 +7,9 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AComparativoExpressaoSimples extends PExpressaoSimples
 {
-    private PExpressaoSimples _expressaoSimples_;
+    private PExpressaoAditiva _exp1_;
     private TComparador _comparador_;
-    private PExpressaoAditiva _expressaoAditiva_;
+    private PExpressaoAditiva _exp2_;
 
     public AComparativoExpressaoSimples()
     {
@@ -17,16 +17,16 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
     }
 
     public AComparativoExpressaoSimples(
-        @SuppressWarnings("hiding") PExpressaoSimples _expressaoSimples_,
+        @SuppressWarnings("hiding") PExpressaoAditiva _exp1_,
         @SuppressWarnings("hiding") TComparador _comparador_,
-        @SuppressWarnings("hiding") PExpressaoAditiva _expressaoAditiva_)
+        @SuppressWarnings("hiding") PExpressaoAditiva _exp2_)
     {
         // Constructor
-        setExpressaoSimples(_expressaoSimples_);
+        setExp1(_exp1_);
 
         setComparador(_comparador_);
 
-        setExpressaoAditiva(_expressaoAditiva_);
+        setExp2(_exp2_);
 
     }
 
@@ -34,9 +34,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
     public Object clone()
     {
         return new AComparativoExpressaoSimples(
-            cloneNode(this._expressaoSimples_),
+            cloneNode(this._exp1_),
             cloneNode(this._comparador_),
-            cloneNode(this._expressaoAditiva_));
+            cloneNode(this._exp2_));
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
         ((Analysis) sw).caseAComparativoExpressaoSimples(this);
     }
 
-    public PExpressaoSimples getExpressaoSimples()
+    public PExpressaoAditiva getExp1()
     {
-        return this._expressaoSimples_;
+        return this._exp1_;
     }
 
-    public void setExpressaoSimples(PExpressaoSimples node)
+    public void setExp1(PExpressaoAditiva node)
     {
-        if(this._expressaoSimples_ != null)
+        if(this._exp1_ != null)
         {
-            this._expressaoSimples_.parent(null);
+            this._exp1_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +67,7 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             node.parent(this);
         }
 
-        this._expressaoSimples_ = node;
+        this._exp1_ = node;
     }
 
     public TComparador getComparador()
@@ -95,16 +95,16 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
         this._comparador_ = node;
     }
 
-    public PExpressaoAditiva getExpressaoAditiva()
+    public PExpressaoAditiva getExp2()
     {
-        return this._expressaoAditiva_;
+        return this._exp2_;
     }
 
-    public void setExpressaoAditiva(PExpressaoAditiva node)
+    public void setExp2(PExpressaoAditiva node)
     {
-        if(this._expressaoAditiva_ != null)
+        if(this._exp2_ != null)
         {
-            this._expressaoAditiva_.parent(null);
+            this._exp2_.parent(null);
         }
 
         if(node != null)
@@ -117,25 +117,25 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             node.parent(this);
         }
 
-        this._expressaoAditiva_ = node;
+        this._exp2_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressaoSimples_)
+            + toString(this._exp1_)
             + toString(this._comparador_)
-            + toString(this._expressaoAditiva_);
+            + toString(this._exp2_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoSimples_ == child)
+        if(this._exp1_ == child)
         {
-            this._expressaoSimples_ = null;
+            this._exp1_ = null;
             return;
         }
 
@@ -145,9 +145,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             return;
         }
 
-        if(this._expressaoAditiva_ == child)
+        if(this._exp2_ == child)
         {
-            this._expressaoAditiva_ = null;
+            this._exp2_ = null;
             return;
         }
 
@@ -158,9 +158,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoSimples_ == oldChild)
+        if(this._exp1_ == oldChild)
         {
-            setExpressaoSimples((PExpressaoSimples) newChild);
+            setExp1((PExpressaoAditiva) newChild);
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             return;
         }
 
-        if(this._expressaoAditiva_ == oldChild)
+        if(this._exp2_ == oldChild)
         {
-            setExpressaoAditiva((PExpressaoAditiva) newChild);
+            setExp2((PExpressaoAditiva) newChild);
             return;
         }
 
