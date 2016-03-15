@@ -5,14 +5,14 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TColchetes extends Token
+public final class TParenteseE extends Token
 {
-    public TColchetes(String text)
+    public TParenteseE(String text)
     {
         setText(text);
     }
 
-    public TColchetes(String text, int line, int pos)
+    public TParenteseE(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TColchetes extends Token
     @Override
     public Object clone()
     {
-      return new TColchetes(getText(), getLine(), getPos());
+      return new TParenteseE(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTColchetes(this);
+        ((Analysis) sw).caseTParenteseE(this);
     }
 }

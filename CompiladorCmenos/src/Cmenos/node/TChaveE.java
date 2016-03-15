@@ -5,14 +5,14 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TChaves extends Token
+public final class TChaveE extends Token
 {
-    public TChaves(String text)
+    public TChaveE(String text)
     {
         setText(text);
     }
 
-    public TChaves(String text, int line, int pos)
+    public TChaveE(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TChaves extends Token
     @Override
     public Object clone()
     {
-      return new TChaves(getText(), getLine(), getPos());
+      return new TChaveE(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTChaves(this);
+        ((Analysis) sw).caseTChaveE(this);
     }
 }

@@ -88,7 +88,7 @@ Tokens
   {normal} ponto_virgula = ponto_virgula;
   {normal} virgula = ',';
   {normal} parentese_e = parentese_e;
-  {normal} parentese_e = parentese_d;
+  {normal} parentese_d = parentese_d;
   {normal} colchete_e = colchete_e;
   {normal} colchete_d = colchete_d;
   {normal} chave_e = chave_e;
@@ -106,10 +106,10 @@ Productions
     {declaracoes} declaracoes;
 
   declaracoes =
-    {m_declaracoes} declaracoes declaracao |
-    {declaracao} tipo s_declaracao;
+    {lista} declaracoes s_declaracao |
+    {s_declaracao} tipo s_declaracao;
 
-  s_declaraco =
+  s_declaracao =
     {funcao_c_param} id parentese_e parametros parentese_d colchete_e comandos colchete_d |
     {funcao_s_param} id parentese_e parentese_d colchete_e comandos colchete_d |
     {variavel} var;
@@ -123,17 +123,17 @@ Productions
   tipo =
     {t_void} void |
     {t_int} int |
-    {t_str} str;
+    {t_str} string;
 
   parametros =
     {m_parametros} parametros virgula parametro |
-    {parametro} param;
+    {parametro} parametro;
 
-  param =
-    {param} tipo id;
+  parametro =
+    {parametro} tipo id;
 
   expressao =
-    {exp} exp soma termo |
+    {expressao} expressao soma termo |
     {term} termo;
 
   termo =
@@ -145,12 +145,13 @@ Productions
     {numero} numero_ou_funcao;
 
   valor =
-    {v_n_or_f} numero_ou_funcao |
+    {v_num} num |
+    {v_func} chama_funcao |
     {v_expressao} expressao |
     {v_str} str;
 
   numero_ou_funcao =
-    {numero_int} int|
+    {numero_int} num |
     {funcao_geral} chama_funcao;
 
   r_matriz =
@@ -163,14 +164,18 @@ Productions
 
   chama_funcao =
     {c_param} id parentese_e valores parentese_d |
-    {s_param} id parentese_e parentese d;
+    {s_param} id parentese_e parentese_d;
 
   comandos =
-    {comandos} tipo var comandos |
-    {comandos} chama_funcao comandos |
-    {comandos} bloco_while comandos |
-    {comandos} bloco_if comandos |
-    {comandos} retorno;
+    {comandos} comandos comando |
+    {comando} comando;
+
+  comando =
+    {chama_var} tipo var |
+    {chama_func} chama_funcao |
+    {bloco_while} bloco_while  |
+    {bloco_if} bloco_if  |
+    {retorno} retorno;
 
   retorno =
     {r_void} return |
@@ -181,6 +186,23 @@ Productions
     {bl_while} while parentese_e condicao parentese_d chave_e comandos chave_d;
 
   bloco_if =
+    {casa} casa_decl |
+    {nao_casa} nao_casa_decl;
+
+  casa_decl =
+    {if} if parentese_e condicao parentese_d casa_decl2 else casa_decl |
+    {outra} chave_e comandos chave_d;
+
+  casa_decl2 =
+      {if} if parentese_e condicao parentese_d casa_decl2 else casa_decl |
+      {outra} chave_e comandos chave_d;
+
+  nao_casa_decl =
+    {if} if parentese_e condicao parentese_d bloco_if |
+    {casa_nao_casa} if parentese_e condicao parentese_d casa_decl else nao_casa_decl;
 
   condicao =
-    {cond} valor comparador valor
+    {cond} valor comparador valor2;
+
+  valor2 =
+    valor;
