@@ -5,46 +5,46 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANumeroFator extends PFator
+public final class AChamadaFator extends PFator
 {
-    private TNum _num_;
+    private PChamada _chamada_;
 
-    public ANumeroFator()
+    public AChamadaFator()
     {
         // Constructor
     }
 
-    public ANumeroFator(
-        @SuppressWarnings("hiding") TNum _num_)
+    public AChamadaFator(
+        @SuppressWarnings("hiding") PChamada _chamada_)
     {
         // Constructor
-        setNum(_num_);
+        setChamada(_chamada_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANumeroFator(
-            cloneNode(this._num_));
+        return new AChamadaFator(
+            cloneNode(this._chamada_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANumeroFator(this);
+        ((Analysis) sw).caseAChamadaFator(this);
     }
 
-    public TNum getNum()
+    public PChamada getChamada()
     {
-        return this._num_;
+        return this._chamada_;
     }
 
-    public void setNum(TNum node)
+    public void setChamada(PChamada node)
     {
-        if(this._num_ != null)
+        if(this._chamada_ != null)
         {
-            this._num_.parent(null);
+            this._chamada_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANumeroFator extends PFator
             node.parent(this);
         }
 
-        this._num_ = node;
+        this._chamada_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._num_);
+            + toString(this._chamada_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._num_ == child)
+        if(this._chamada_ == child)
         {
-            this._num_ = null;
+            this._chamada_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANumeroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._num_ == oldChild)
+        if(this._chamada_ == oldChild)
         {
-            setNum((TNum) newChild);
+            setChamada((PChamada) newChild);
             return;
         }
 

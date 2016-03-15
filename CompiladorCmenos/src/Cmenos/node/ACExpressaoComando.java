@@ -5,46 +5,46 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANumeroFator extends PFator
+public final class ACExpressaoComando extends PComando
 {
-    private TNum _num_;
+    private PCEspressao _cEspressao_;
 
-    public ANumeroFator()
+    public ACExpressaoComando()
     {
         // Constructor
     }
 
-    public ANumeroFator(
-        @SuppressWarnings("hiding") TNum _num_)
+    public ACExpressaoComando(
+        @SuppressWarnings("hiding") PCEspressao _cEspressao_)
     {
         // Constructor
-        setNum(_num_);
+        setCEspressao(_cEspressao_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANumeroFator(
-            cloneNode(this._num_));
+        return new ACExpressaoComando(
+            cloneNode(this._cEspressao_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANumeroFator(this);
+        ((Analysis) sw).caseACExpressaoComando(this);
     }
 
-    public TNum getNum()
+    public PCEspressao getCEspressao()
     {
-        return this._num_;
+        return this._cEspressao_;
     }
 
-    public void setNum(TNum node)
+    public void setCEspressao(PCEspressao node)
     {
-        if(this._num_ != null)
+        if(this._cEspressao_ != null)
         {
-            this._num_.parent(null);
+            this._cEspressao_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANumeroFator extends PFator
             node.parent(this);
         }
 
-        this._num_ = node;
+        this._cEspressao_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._num_);
+            + toString(this._cEspressao_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._num_ == child)
+        if(this._cEspressao_ == child)
         {
-            this._num_ = null;
+            this._cEspressao_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANumeroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._num_ == oldChild)
+        if(this._cEspressao_ == oldChild)
         {
-            setNum((TNum) newChild);
+            setCEspressao((PCEspressao) newChild);
             return;
         }
 

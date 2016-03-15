@@ -5,46 +5,46 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANumeroFator extends PFator
+public final class ATermoExpressaoAditiva extends PExpressaoAditiva
 {
-    private TNum _num_;
+    private PTermo _termo_;
 
-    public ANumeroFator()
+    public ATermoExpressaoAditiva()
     {
         // Constructor
     }
 
-    public ANumeroFator(
-        @SuppressWarnings("hiding") TNum _num_)
+    public ATermoExpressaoAditiva(
+        @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
-        setNum(_num_);
+        setTermo(_termo_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANumeroFator(
-            cloneNode(this._num_));
+        return new ATermoExpressaoAditiva(
+            cloneNode(this._termo_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANumeroFator(this);
+        ((Analysis) sw).caseATermoExpressaoAditiva(this);
     }
 
-    public TNum getNum()
+    public PTermo getTermo()
     {
-        return this._num_;
+        return this._termo_;
     }
 
-    public void setNum(TNum node)
+    public void setTermo(PTermo node)
     {
-        if(this._num_ != null)
+        if(this._termo_ != null)
         {
-            this._num_.parent(null);
+            this._termo_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANumeroFator extends PFator
             node.parent(this);
         }
 
-        this._num_ = node;
+        this._termo_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._num_);
+            + toString(this._termo_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._num_ == child)
+        if(this._termo_ == child)
         {
-            this._num_ = null;
+            this._termo_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANumeroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._num_ == oldChild)
+        if(this._termo_ == oldChild)
         {
-            setNum((TNum) newChild);
+            setTermo((PTermo) newChild);
             return;
         }
 

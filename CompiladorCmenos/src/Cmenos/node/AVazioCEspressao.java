@@ -5,46 +5,46 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANumeroFator extends PFator
+public final class AVazioCEspressao extends PCEspressao
 {
-    private TNum _num_;
+    private TPontoVirgula _pontoVirgula_;
 
-    public ANumeroFator()
+    public AVazioCEspressao()
     {
         // Constructor
     }
 
-    public ANumeroFator(
-        @SuppressWarnings("hiding") TNum _num_)
+    public AVazioCEspressao(
+        @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
     {
         // Constructor
-        setNum(_num_);
+        setPontoVirgula(_pontoVirgula_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANumeroFator(
-            cloneNode(this._num_));
+        return new AVazioCEspressao(
+            cloneNode(this._pontoVirgula_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANumeroFator(this);
+        ((Analysis) sw).caseAVazioCEspressao(this);
     }
 
-    public TNum getNum()
+    public TPontoVirgula getPontoVirgula()
     {
-        return this._num_;
+        return this._pontoVirgula_;
     }
 
-    public void setNum(TNum node)
+    public void setPontoVirgula(TPontoVirgula node)
     {
-        if(this._num_ != null)
+        if(this._pontoVirgula_ != null)
         {
-            this._num_.parent(null);
+            this._pontoVirgula_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANumeroFator extends PFator
             node.parent(this);
         }
 
-        this._num_ = node;
+        this._pontoVirgula_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._num_);
+            + toString(this._pontoVirgula_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._num_ == child)
+        if(this._pontoVirgula_ == child)
         {
-            this._num_ = null;
+            this._pontoVirgula_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANumeroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._num_ == oldChild)
+        if(this._pontoVirgula_ == oldChild)
         {
-            setNum((TNum) newChild);
+            setPontoVirgula((TPontoVirgula) newChild);
             return;
         }
 

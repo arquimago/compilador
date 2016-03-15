@@ -5,46 +5,46 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANumeroFator extends PFator
+public final class AVariavelDeclaracao extends PDeclaracao
 {
-    private TNum _num_;
+    private PVariavel _variavel_;
 
-    public ANumeroFator()
+    public AVariavelDeclaracao()
     {
         // Constructor
     }
 
-    public ANumeroFator(
-        @SuppressWarnings("hiding") TNum _num_)
+    public AVariavelDeclaracao(
+        @SuppressWarnings("hiding") PVariavel _variavel_)
     {
         // Constructor
-        setNum(_num_);
+        setVariavel(_variavel_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANumeroFator(
-            cloneNode(this._num_));
+        return new AVariavelDeclaracao(
+            cloneNode(this._variavel_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANumeroFator(this);
+        ((Analysis) sw).caseAVariavelDeclaracao(this);
     }
 
-    public TNum getNum()
+    public PVariavel getVariavel()
     {
-        return this._num_;
+        return this._variavel_;
     }
 
-    public void setNum(TNum node)
+    public void setVariavel(PVariavel node)
     {
-        if(this._num_ != null)
+        if(this._variavel_ != null)
         {
-            this._num_.parent(null);
+            this._variavel_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANumeroFator extends PFator
             node.parent(this);
         }
 
-        this._num_ = node;
+        this._variavel_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._num_);
+            + toString(this._variavel_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._num_ == child)
+        if(this._variavel_ == child)
         {
-            this._num_ = null;
+            this._variavel_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANumeroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._num_ == oldChild)
+        if(this._variavel_ == oldChild)
         {
-            setNum((TNum) newChild);
+            setVariavel((PVariavel) newChild);
             return;
         }
 

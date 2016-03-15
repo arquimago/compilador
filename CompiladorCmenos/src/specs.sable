@@ -103,106 +103,105 @@ Ignored Tokens
 Productions
 
   programa =
-    {declaracoes} declaracoes;
+    {lista} lista_declaracoes;
 
-  declaracoes =
-    {lista} declaracoes s_declaracao |
-    {s_declaracao} tipo s_declaracao;
+  lista_declaracoes =
+    {lista} lista_declaracoes declaracao |
+    {declaracao} declaracao;
 
-  s_declaracao =
-    {funcao_c_param} id parentese_e parametros parentese_d colchete_e comandos colchete_d |
-    {funcao_s_param} id parentese_e parentese_d colchete_e comandos colchete_d |
-    {variavel} var;
+  declaracao =
+    {variavel} variavel |
+    {funcao} funcao;
 
-  var =
-    {nula} id ponto_virgula |
-    {atribuida} id atribuicao valor ponto_virgula |
-    {matriz_nula} id r_matriz ponto_virgula|
-    {matriz_atribuida} id r_matriz atribuicao chave_e valores chave_d ponto_virgula;
+  variavel =
+    {nula} tipo id ponto_virgula |
+    {matriz_nula} tipo id colchete_e num colchete_d ponto_virgula;
 
-  tipo =
+  tipo=
     {t_void} void |
     {t_int} int |
     {t_str} string;
 
+  funcao =
+    {funcao} tipo id parentese_e parametros parentese_d comandos;
+
   parametros =
-    {m_parametros} parametros virgula parametro |
+    {lista} lista_parametros |
+    {vazio} ;
+
+  lista_parametros =
+    {m_parametros} lista_parametros virgula parametro |
     {parametro} parametro;
 
   parametro =
-    {parametro} tipo id;
-
-  expressao =
-    {expressao} expressao soma termo |
-    {term} termo;
-
-  termo =
-    {t} termo mult fator |
-    {fat} fator;
-
-  fator =
-    {f} parentese_e expressao parentese_d |
-    {numero} numero_ou_funcao;
-
-  valor =
-    {v_num} num |
-    {v_func} chama_funcao |
-    {v_expressao} expressao |
-    {v_str} str;
-
-  numero_ou_funcao =
-    {numero_int} num |
-    {funcao_geral} chama_funcao;
-
-  r_matriz =
-    {dimensoes} r_matriz colchete_e numero_ou_funcao colchete_d |
-    {dimensao} colchete_e numero_ou_funcao colchete_d;
-
-  valores =
-    {m_valores} valores virgula valor |
-    {um_valor} valor;
-
-  chama_funcao =
-    {c_param} id parentese_e valores parentese_d |
-    {s_param} id parentese_e parentese_d;
+    {simples} tipo id |
+    {matriz} tipo id chave_e chave_d;
 
   comandos =
-    {comandos} comandos comando |
-    {comando} comando;
+    {declaracoes_locais} colchete_e declaracoes_locais lista_comandos colchete_d;
+
+  declaracoes_locais =
+    {lista} declaracoes_locais variavel |
+    {vazio} ;
+
+  lista_comandos =
+    {lista} lista_comandos comando |
+    {vazio} ;
 
   comando =
-    {chama_var} tipo var |
-    {chama_func} chama_funcao |
-    {bloco_while} bloco_while  |
-    {bloco_if} bloco_if  |
+    {c_expressao} c_espressao |
+    {comandos} comandos |
+    {bloco_if} bloco_if |
+    {bloco_while} bloco_while |
     {retorno} retorno;
 
-  retorno =
-    {r_void} return |
-    {r_int} return num |
-    {r_str} return str;
-
-  bloco_while =
-    {bl_while} while parentese_e condicao parentese_d chave_e comandos chave_d;
+  c_espressao =
+    {espressao} expressao ponto_virgula |
+    {vazio} ponto_virgula;
 
   bloco_if =
-    {casa} casa_decl |
-    {nao_casa} nao_casa_decl;
+    {if} if parentese_e expressao parentese_d comando;
 
-  casa_decl =
-    {if} if parentese_e condicao parentese_d casa_decl2 else casa_decl |
-    {outra} chave_e comandos chave_d;
+  bloco_while =
+    while parentese_e expressao parentese_d comando;
 
-  casa_decl2 =
-      {if} if parentese_e condicao parentese_d casa_decl2 else casa_decl |
-      {outra} chave_e comandos chave_d;
+  retorno =
+    {vazio} return ponto_virgula |
+    {com_expressao} return expressao ponto_virgula;
 
-  nao_casa_decl =
-    {if} if parentese_e condicao parentese_d bloco_if |
-    {casa_nao_casa} if parentese_e condicao parentese_d casa_decl else nao_casa_decl;
+  expressao =
+    {atribuicao} var atribuicao expressao |
+    {simples} expressao_simples ;
 
-  condicao =
-    {cond} valor comparador valor2;
+  var =
+    {id_simples} id |
+    {id_expressao} id colchete_e expressao colchete_d;
 
-  valor2 =
-    valor;
+  expressao_simples =
+    {comparativo} expressao_simples comparador expressao_aditiva |
+    {aditiva} expressao_aditiva;
+
+  expressao_aditiva =
+    {soma} expressao_aditiva soma termo |
+    {termo} termo;
+
+  termo =
+    {mult} termo mult fator |
+    {fator} fator;
+
+  fator =
+    {espressao} parentese_e expressao parentese_d |
+    {variavel} var |
+    {chamada} chamada |
+    {numero} num;
+
+  chamada =
+    id parentese_e args parentese_d;
+
+  args =
+    {lista} lista_args |
+    {vazio} ;
+
+  lista_args =
+    {lista} lista_args expressao |
+    {expressao} expressao;

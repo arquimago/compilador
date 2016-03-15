@@ -5,46 +5,46 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANumeroFator extends PFator
+public final class AListaParametros extends PParametros
 {
-    private TNum _num_;
+    private PListaParametros _listaParametros_;
 
-    public ANumeroFator()
+    public AListaParametros()
     {
         // Constructor
     }
 
-    public ANumeroFator(
-        @SuppressWarnings("hiding") TNum _num_)
+    public AListaParametros(
+        @SuppressWarnings("hiding") PListaParametros _listaParametros_)
     {
         // Constructor
-        setNum(_num_);
+        setListaParametros(_listaParametros_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANumeroFator(
-            cloneNode(this._num_));
+        return new AListaParametros(
+            cloneNode(this._listaParametros_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANumeroFator(this);
+        ((Analysis) sw).caseAListaParametros(this);
     }
 
-    public TNum getNum()
+    public PListaParametros getListaParametros()
     {
-        return this._num_;
+        return this._listaParametros_;
     }
 
-    public void setNum(TNum node)
+    public void setListaParametros(PListaParametros node)
     {
-        if(this._num_ != null)
+        if(this._listaParametros_ != null)
         {
-            this._num_.parent(null);
+            this._listaParametros_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANumeroFator extends PFator
             node.parent(this);
         }
 
-        this._num_ = node;
+        this._listaParametros_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._num_);
+            + toString(this._listaParametros_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._num_ == child)
+        if(this._listaParametros_ == child)
         {
-            this._num_ = null;
+            this._listaParametros_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANumeroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._num_ == oldChild)
+        if(this._listaParametros_ == oldChild)
         {
-            setNum((TNum) newChild);
+            setListaParametros((PListaParametros) newChild);
             return;
         }
 
