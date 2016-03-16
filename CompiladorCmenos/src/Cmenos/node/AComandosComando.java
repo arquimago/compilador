@@ -7,7 +7,7 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AComandosComando extends PComando
 {
-    private PComandos _comandos_;
+    private PCompostoDec _compostoDec_;
 
     public AComandosComando()
     {
@@ -15,10 +15,10 @@ public final class AComandosComando extends PComando
     }
 
     public AComandosComando(
-        @SuppressWarnings("hiding") PComandos _comandos_)
+        @SuppressWarnings("hiding") PCompostoDec _compostoDec_)
     {
         // Constructor
-        setComandos(_comandos_);
+        setCompostoDec(_compostoDec_);
 
     }
 
@@ -26,7 +26,7 @@ public final class AComandosComando extends PComando
     public Object clone()
     {
         return new AComandosComando(
-            cloneNode(this._comandos_));
+            cloneNode(this._compostoDec_));
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class AComandosComando extends PComando
         ((Analysis) sw).caseAComandosComando(this);
     }
 
-    public PComandos getComandos()
+    public PCompostoDec getCompostoDec()
     {
-        return this._comandos_;
+        return this._compostoDec_;
     }
 
-    public void setComandos(PComandos node)
+    public void setCompostoDec(PCompostoDec node)
     {
-        if(this._comandos_ != null)
+        if(this._compostoDec_ != null)
         {
-            this._comandos_.parent(null);
+            this._compostoDec_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AComandosComando extends PComando
             node.parent(this);
         }
 
-        this._comandos_ = node;
+        this._compostoDec_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._comandos_);
+            + toString(this._compostoDec_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._comandos_ == child)
+        if(this._compostoDec_ == child)
         {
-            this._comandos_ = null;
+            this._compostoDec_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AComandosComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._comandos_ == oldChild)
+        if(this._compostoDec_ == oldChild)
         {
-            setComandos((PComandos) newChild);
+            setCompostoDec((PCompostoDec) newChild);
             return;
         }
 

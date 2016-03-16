@@ -7,16 +7,26 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AVazioParametros extends PParametros
 {
+    private TVoid _void_;
 
     public AVazioParametros()
     {
         // Constructor
     }
 
+    public AVazioParametros(
+        @SuppressWarnings("hiding") TVoid _void_)
+    {
+        // Constructor
+        setVoid(_void_);
+
+    }
+
     @Override
     public Object clone()
     {
-        return new AVazioParametros();
+        return new AVazioParametros(
+            cloneNode(this._void_));
     }
 
     @Override
@@ -25,16 +35,48 @@ public final class AVazioParametros extends PParametros
         ((Analysis) sw).caseAVazioParametros(this);
     }
 
+    public TVoid getVoid()
+    {
+        return this._void_;
+    }
+
+    public void setVoid(TVoid node)
+    {
+        if(this._void_ != null)
+        {
+            this._void_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._void_ = node;
+    }
+
     @Override
     public String toString()
     {
-        return "";
+        return ""
+            + toString(this._void_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._void_ == child)
+        {
+            this._void_ = null;
+            return;
+        }
+
         throw new RuntimeException("Not a child.");
     }
 
@@ -42,6 +84,12 @@ public final class AVazioParametros extends PParametros
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._void_ == oldChild)
+        {
+            setVoid((TVoid) newChild);
+            return;
+        }
+
         throw new RuntimeException("Not a child.");
     }
 }

@@ -93,6 +93,7 @@ Tokens
   {normal} colchete_d = colchete_d;
   {normal} chave_e = chave_e;
   {normal} chave_d = chave_d;
+  {normal} idfunc = letra letra* parentese_e;
 
 
 Ignored Tokens
@@ -110,38 +111,38 @@ Productions
     {declaracao} declaracao;
 
   declaracao =
-    {variavel} variavel |
-    {funcao} funcao;
+    {variavel} variavel_dec |
+    {funcao} funcao_dec;
 
-  variavel =
+  variavel_dec =
     {nula} tipo id ponto_virgula |
-    {matriz_nula} tipo id colchete_e num colchete_d ponto_virgula;
+    {matriz} tipo id colchete_e num colchete_d ponto_virgula;
 
-  tipo=
+  tipo =
     {t_void} void |
     {t_int} int |
     {t_str} string;
 
-  funcao =
-    {funcao} tipo id parentese_e parametros parentese_d comandos;
+  funcao_dec =
+    tipo id parentese_e parametros parentese_d composto_dec;
 
   parametros =
     {lista} lista_parametros |
-    {vazio} ;
+    {vazio} void;
 
   lista_parametros =
-    {m_parametros} lista_parametros virgula parametro |
+    {parametros} lista_parametros virgula parametro |
     {parametro} parametro;
 
   parametro =
     {simples} tipo id |
     {matriz} tipo id colchete_e colchete_d;
 
-  comandos =
-    {declaracoes_locais} colchete_e declaracoes_locais lista_comandos colchete_d;
+  composto_dec =
+    {declaracoes_locais} chave_e declaracoes_locais lista_comandos chave_d;
 
   declaracoes_locais =
-    {lista} declaracoes_locais var |
+    {lista} declaracoes_locais variavel_dec |
     {vazio} ;
 
   lista_comandos =
@@ -149,18 +150,18 @@ Productions
     {vazio} ;
 
   comando =
-    {c_expressao} c_espressao |
-    {comandos} comandos |
-    {bloco_if} bloco_if |
+    {expressao} espressao_dec |
+    {comandos} composto_dec |
+    {if} if parentese_e expressao parentese_d composto_dec |
+    {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec
+    else [f]:composto_dec |
+    {if_else} if parentese_e expressao parentese_d ponto_virgula else composto_dec|
     {bloco_while} bloco_while |
     {retorno} retorno;
 
-  c_espressao =
+  espressao_dec =
     {espressao} expressao ponto_virgula |
     {vazio} ponto_virgula;
-
-  bloco_if =
-    {if} if parentese_e expressao parentese_d comando;
 
   bloco_while =
     while parentese_e expressao parentese_d comando;
@@ -175,14 +176,18 @@ Productions
 
   var =
     {id_simples} id |
-    {id_expressao} id colchete_e expressao colchete_d;
+    {id_array} id array;
+
+  array =
+    {array_multiplo} array colchete_e expressao colchete_d |
+    {array_base} colchete_e expressao colchete_d;
 
   expressao_simples =
-    {comparativo} [exp1]:expressao_aditiva comparador [exp2]:expressao_aditiva |
-    {aditiva} expressao_aditiva;
+    {comparativo} [exp1]:soma_expressao comparador [exp2]:soma_expressao |
+    {aditiva} soma_expressao;
 
-  expressao_aditiva =
-    {soma} expressao_aditiva soma termo |
+  soma_expressao =
+    {soma} soma_expressao soma termo |
     {termo} termo;
 
   termo =
@@ -196,7 +201,7 @@ Productions
     {numero} num;
 
   chamada =
-    id parentese_e args parentese_d;
+    idfunc args parentese_d;
 
   args =
     {lista} lista_args |

@@ -7,7 +7,7 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AVariavelDeclaracao extends PDeclaracao
 {
-    private PVariavel _variavel_;
+    private PVariavelDec _variavelDec_;
 
     public AVariavelDeclaracao()
     {
@@ -15,10 +15,10 @@ public final class AVariavelDeclaracao extends PDeclaracao
     }
 
     public AVariavelDeclaracao(
-        @SuppressWarnings("hiding") PVariavel _variavel_)
+        @SuppressWarnings("hiding") PVariavelDec _variavelDec_)
     {
         // Constructor
-        setVariavel(_variavel_);
+        setVariavelDec(_variavelDec_);
 
     }
 
@@ -26,7 +26,7 @@ public final class AVariavelDeclaracao extends PDeclaracao
     public Object clone()
     {
         return new AVariavelDeclaracao(
-            cloneNode(this._variavel_));
+            cloneNode(this._variavelDec_));
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class AVariavelDeclaracao extends PDeclaracao
         ((Analysis) sw).caseAVariavelDeclaracao(this);
     }
 
-    public PVariavel getVariavel()
+    public PVariavelDec getVariavelDec()
     {
-        return this._variavel_;
+        return this._variavelDec_;
     }
 
-    public void setVariavel(PVariavel node)
+    public void setVariavelDec(PVariavelDec node)
     {
-        if(this._variavel_ != null)
+        if(this._variavelDec_ != null)
         {
-            this._variavel_.parent(null);
+            this._variavelDec_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AVariavelDeclaracao extends PDeclaracao
             node.parent(this);
         }
 
-        this._variavel_ = node;
+        this._variavelDec_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._variavel_);
+            + toString(this._variavelDec_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._variavel_ == child)
+        if(this._variavelDec_ == child)
         {
-            this._variavel_ = null;
+            this._variavelDec_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AVariavelDeclaracao extends PDeclaracao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._variavel_ == oldChild)
+        if(this._variavelDec_ == oldChild)
         {
-            setVariavel((PVariavel) newChild);
+            setVariavelDec((PVariavelDec) newChild);
             return;
         }
 

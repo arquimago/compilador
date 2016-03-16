@@ -7,8 +7,7 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AChamada extends PChamada
 {
-    private TId _id_;
-    private TParenteseE _parenteseE_;
+    private TIdfunc _idfunc_;
     private PArgs _args_;
     private TParenteseD _parenteseD_;
 
@@ -18,15 +17,12 @@ public final class AChamada extends PChamada
     }
 
     public AChamada(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TParenteseE _parenteseE_,
+        @SuppressWarnings("hiding") TIdfunc _idfunc_,
         @SuppressWarnings("hiding") PArgs _args_,
         @SuppressWarnings("hiding") TParenteseD _parenteseD_)
     {
         // Constructor
-        setId(_id_);
-
-        setParenteseE(_parenteseE_);
+        setIdfunc(_idfunc_);
 
         setArgs(_args_);
 
@@ -38,8 +34,7 @@ public final class AChamada extends PChamada
     public Object clone()
     {
         return new AChamada(
-            cloneNode(this._id_),
-            cloneNode(this._parenteseE_),
+            cloneNode(this._idfunc_),
             cloneNode(this._args_),
             cloneNode(this._parenteseD_));
     }
@@ -50,16 +45,16 @@ public final class AChamada extends PChamada
         ((Analysis) sw).caseAChamada(this);
     }
 
-    public TId getId()
+    public TIdfunc getIdfunc()
     {
-        return this._id_;
+        return this._idfunc_;
     }
 
-    public void setId(TId node)
+    public void setIdfunc(TIdfunc node)
     {
-        if(this._id_ != null)
+        if(this._idfunc_ != null)
         {
-            this._id_.parent(null);
+            this._idfunc_.parent(null);
         }
 
         if(node != null)
@@ -72,32 +67,7 @@ public final class AChamada extends PChamada
             node.parent(this);
         }
 
-        this._id_ = node;
-    }
-
-    public TParenteseE getParenteseE()
-    {
-        return this._parenteseE_;
-    }
-
-    public void setParenteseE(TParenteseE node)
-    {
-        if(this._parenteseE_ != null)
-        {
-            this._parenteseE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parenteseE_ = node;
+        this._idfunc_ = node;
     }
 
     public PArgs getArgs()
@@ -154,8 +124,7 @@ public final class AChamada extends PChamada
     public String toString()
     {
         return ""
-            + toString(this._id_)
-            + toString(this._parenteseE_)
+            + toString(this._idfunc_)
             + toString(this._args_)
             + toString(this._parenteseD_);
     }
@@ -164,15 +133,9 @@ public final class AChamada extends PChamada
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._id_ == child)
+        if(this._idfunc_ == child)
         {
-            this._id_ = null;
-            return;
-        }
-
-        if(this._parenteseE_ == child)
-        {
-            this._parenteseE_ = null;
+            this._idfunc_ = null;
             return;
         }
 
@@ -195,15 +158,9 @@ public final class AChamada extends PChamada
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._id_ == oldChild)
+        if(this._idfunc_ == oldChild)
         {
-            setId((TId) newChild);
-            return;
-        }
-
-        if(this._parenteseE_ == oldChild)
-        {
-            setParenteseE((TParenteseE) newChild);
+            setIdfunc((TIdfunc) newChild);
             return;
         }
 

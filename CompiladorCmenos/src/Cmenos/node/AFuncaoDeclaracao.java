@@ -7,7 +7,7 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AFuncaoDeclaracao extends PDeclaracao
 {
-    private PFuncao _funcao_;
+    private PFuncaoDec _funcaoDec_;
 
     public AFuncaoDeclaracao()
     {
@@ -15,10 +15,10 @@ public final class AFuncaoDeclaracao extends PDeclaracao
     }
 
     public AFuncaoDeclaracao(
-        @SuppressWarnings("hiding") PFuncao _funcao_)
+        @SuppressWarnings("hiding") PFuncaoDec _funcaoDec_)
     {
         // Constructor
-        setFuncao(_funcao_);
+        setFuncaoDec(_funcaoDec_);
 
     }
 
@@ -26,7 +26,7 @@ public final class AFuncaoDeclaracao extends PDeclaracao
     public Object clone()
     {
         return new AFuncaoDeclaracao(
-            cloneNode(this._funcao_));
+            cloneNode(this._funcaoDec_));
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class AFuncaoDeclaracao extends PDeclaracao
         ((Analysis) sw).caseAFuncaoDeclaracao(this);
     }
 
-    public PFuncao getFuncao()
+    public PFuncaoDec getFuncaoDec()
     {
-        return this._funcao_;
+        return this._funcaoDec_;
     }
 
-    public void setFuncao(PFuncao node)
+    public void setFuncaoDec(PFuncaoDec node)
     {
-        if(this._funcao_ != null)
+        if(this._funcaoDec_ != null)
         {
-            this._funcao_.parent(null);
+            this._funcaoDec_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AFuncaoDeclaracao extends PDeclaracao
             node.parent(this);
         }
 
-        this._funcao_ = node;
+        this._funcaoDec_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._funcao_);
+            + toString(this._funcaoDec_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._funcao_ == child)
+        if(this._funcaoDec_ == child)
         {
-            this._funcao_ = null;
+            this._funcaoDec_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AFuncaoDeclaracao extends PDeclaracao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._funcao_ == oldChild)
+        if(this._funcaoDec_ == oldChild)
         {
-            setFuncao((PFuncao) newChild);
+            setFuncaoDec((PFuncaoDec) newChild);
             return;
         }
 

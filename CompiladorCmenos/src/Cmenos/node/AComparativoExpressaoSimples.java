@@ -7,9 +7,9 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AComparativoExpressaoSimples extends PExpressaoSimples
 {
-    private PExpressaoAditiva _exp1_;
+    private PSomaExpressao _exp1_;
     private TComparador _comparador_;
-    private PExpressaoAditiva _exp2_;
+    private PSomaExpressao _exp2_;
 
     public AComparativoExpressaoSimples()
     {
@@ -17,9 +17,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
     }
 
     public AComparativoExpressaoSimples(
-        @SuppressWarnings("hiding") PExpressaoAditiva _exp1_,
+        @SuppressWarnings("hiding") PSomaExpressao _exp1_,
         @SuppressWarnings("hiding") TComparador _comparador_,
-        @SuppressWarnings("hiding") PExpressaoAditiva _exp2_)
+        @SuppressWarnings("hiding") PSomaExpressao _exp2_)
     {
         // Constructor
         setExp1(_exp1_);
@@ -45,12 +45,12 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
         ((Analysis) sw).caseAComparativoExpressaoSimples(this);
     }
 
-    public PExpressaoAditiva getExp1()
+    public PSomaExpressao getExp1()
     {
         return this._exp1_;
     }
 
-    public void setExp1(PExpressaoAditiva node)
+    public void setExp1(PSomaExpressao node)
     {
         if(this._exp1_ != null)
         {
@@ -95,12 +95,12 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
         this._comparador_ = node;
     }
 
-    public PExpressaoAditiva getExp2()
+    public PSomaExpressao getExp2()
     {
         return this._exp2_;
     }
 
-    public void setExp2(PExpressaoAditiva node)
+    public void setExp2(PSomaExpressao node)
     {
         if(this._exp2_ != null)
         {
@@ -160,7 +160,7 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
         // Replace child
         if(this._exp1_ == oldChild)
         {
-            setExp1((PExpressaoAditiva) newChild);
+            setExp1((PSomaExpressao) newChild);
             return;
         }
 
@@ -172,7 +172,7 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
 
         if(this._exp2_ == oldChild)
         {
-            setExp2((PExpressaoAditiva) newChild);
+            setExp2((PSomaExpressao) newChild);
             return;
         }
 

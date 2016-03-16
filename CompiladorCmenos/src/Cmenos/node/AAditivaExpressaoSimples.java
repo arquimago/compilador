@@ -7,7 +7,7 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class AAditivaExpressaoSimples extends PExpressaoSimples
 {
-    private PExpressaoAditiva _expressaoAditiva_;
+    private PSomaExpressao _somaExpressao_;
 
     public AAditivaExpressaoSimples()
     {
@@ -15,10 +15,10 @@ public final class AAditivaExpressaoSimples extends PExpressaoSimples
     }
 
     public AAditivaExpressaoSimples(
-        @SuppressWarnings("hiding") PExpressaoAditiva _expressaoAditiva_)
+        @SuppressWarnings("hiding") PSomaExpressao _somaExpressao_)
     {
         // Constructor
-        setExpressaoAditiva(_expressaoAditiva_);
+        setSomaExpressao(_somaExpressao_);
 
     }
 
@@ -26,7 +26,7 @@ public final class AAditivaExpressaoSimples extends PExpressaoSimples
     public Object clone()
     {
         return new AAditivaExpressaoSimples(
-            cloneNode(this._expressaoAditiva_));
+            cloneNode(this._somaExpressao_));
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class AAditivaExpressaoSimples extends PExpressaoSimples
         ((Analysis) sw).caseAAditivaExpressaoSimples(this);
     }
 
-    public PExpressaoAditiva getExpressaoAditiva()
+    public PSomaExpressao getSomaExpressao()
     {
-        return this._expressaoAditiva_;
+        return this._somaExpressao_;
     }
 
-    public void setExpressaoAditiva(PExpressaoAditiva node)
+    public void setSomaExpressao(PSomaExpressao node)
     {
-        if(this._expressaoAditiva_ != null)
+        if(this._somaExpressao_ != null)
         {
-            this._expressaoAditiva_.parent(null);
+            this._somaExpressao_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AAditivaExpressaoSimples extends PExpressaoSimples
             node.parent(this);
         }
 
-        this._expressaoAditiva_ = node;
+        this._somaExpressao_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressaoAditiva_);
+            + toString(this._somaExpressao_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoAditiva_ == child)
+        if(this._somaExpressao_ == child)
         {
-            this._expressaoAditiva_ = null;
+            this._somaExpressao_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AAditivaExpressaoSimples extends PExpressaoSimples
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoAditiva_ == oldChild)
+        if(this._somaExpressao_ == oldChild)
         {
-            setExpressaoAditiva((PExpressaoAditiva) newChild);
+            setSomaExpressao((PSomaExpressao) newChild);
             return;
         }
 
