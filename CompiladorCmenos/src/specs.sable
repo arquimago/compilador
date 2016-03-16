@@ -172,7 +172,8 @@ Productions
 
   expressao =
     {atribuicao} var atribuicao expressao |
-    {simples} expressao_simples ;
+    {atribuicao_str} var atribuicao str |
+    {simples} expressao_simples;
 
   var =
     {id_simples} id |

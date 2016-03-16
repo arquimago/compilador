@@ -47,6 +47,7 @@ public interface Analysis extends Switch
     void caseAVazioRetorno(AVazioRetorno node);
     void caseAComExpressaoRetorno(AComExpressaoRetorno node);
     void caseAAtribuicaoExpressao(AAtribuicaoExpressao node);
+    void caseAAtribuicaoStrExpressao(AAtribuicaoStrExpressao node);
     void caseASimplesExpressao(ASimplesExpressao node);
     void caseAIdSimplesVar(AIdSimplesVar node);
     void caseAIdArrayVar(AIdArrayVar node);

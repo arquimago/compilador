@@ -963,6 +963,35 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAAtribuicaoExpressao(node);
     }
 
+    public void inAAtribuicaoStrExpressao(AAtribuicaoStrExpressao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAAtribuicaoStrExpressao(AAtribuicaoStrExpressao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoStrExpressao(AAtribuicaoStrExpressao node)
+    {
+        inAAtribuicaoStrExpressao(node);
+        if(node.getStr() != null)
+        {
+            node.getStr().apply(this);
+        }
+        if(node.getAtribuicao() != null)
+        {
+            node.getAtribuicao().apply(this);
+        }
+        if(node.getVar() != null)
+        {
+            node.getVar().apply(this);
+        }
+        outAAtribuicaoStrExpressao(node);
+    }
+
     public void inASimplesExpressao(ASimplesExpressao node)
     {
         defaultIn(node);

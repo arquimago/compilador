@@ -285,6 +285,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAAtribuicaoStrExpressao(AAtribuicaoStrExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseASimplesExpressao(ASimplesExpressao node)
     {
         defaultCase(node);
