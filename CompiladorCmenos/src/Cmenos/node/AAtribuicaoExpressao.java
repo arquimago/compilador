@@ -9,7 +9,7 @@ public final class AAtribuicaoExpressao extends PExpressao
 {
     private PVar _var_;
     private TAtribuicao _atribuicao_;
-    private PExpressao _expressao_;
+    private PExpressaoSimples _expressaoSimples_;
 
     public AAtribuicaoExpressao()
     {
@@ -19,14 +19,14 @@ public final class AAtribuicaoExpressao extends PExpressao
     public AAtribuicaoExpressao(
         @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TAtribuicao _atribuicao_,
-        @SuppressWarnings("hiding") PExpressao _expressao_)
+        @SuppressWarnings("hiding") PExpressaoSimples _expressaoSimples_)
     {
         // Constructor
         setVar(_var_);
 
         setAtribuicao(_atribuicao_);
 
-        setExpressao(_expressao_);
+        setExpressaoSimples(_expressaoSimples_);
 
     }
 
@@ -36,7 +36,7 @@ public final class AAtribuicaoExpressao extends PExpressao
         return new AAtribuicaoExpressao(
             cloneNode(this._var_),
             cloneNode(this._atribuicao_),
-            cloneNode(this._expressao_));
+            cloneNode(this._expressaoSimples_));
     }
 
     @Override
@@ -95,16 +95,16 @@ public final class AAtribuicaoExpressao extends PExpressao
         this._atribuicao_ = node;
     }
 
-    public PExpressao getExpressao()
+    public PExpressaoSimples getExpressaoSimples()
     {
-        return this._expressao_;
+        return this._expressaoSimples_;
     }
 
-    public void setExpressao(PExpressao node)
+    public void setExpressaoSimples(PExpressaoSimples node)
     {
-        if(this._expressao_ != null)
+        if(this._expressaoSimples_ != null)
         {
-            this._expressao_.parent(null);
+            this._expressaoSimples_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class AAtribuicaoExpressao extends PExpressao
             node.parent(this);
         }
 
-        this._expressao_ = node;
+        this._expressaoSimples_ = node;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class AAtribuicaoExpressao extends PExpressao
         return ""
             + toString(this._var_)
             + toString(this._atribuicao_)
-            + toString(this._expressao_);
+            + toString(this._expressaoSimples_);
     }
 
     @Override
@@ -145,9 +145,9 @@ public final class AAtribuicaoExpressao extends PExpressao
             return;
         }
 
-        if(this._expressao_ == child)
+        if(this._expressaoSimples_ == child)
         {
-            this._expressao_ = null;
+            this._expressaoSimples_ = null;
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AAtribuicaoExpressao extends PExpressao
             return;
         }
 
-        if(this._expressao_ == oldChild)
+        if(this._expressaoSimples_ == oldChild)
         {
-            setExpressao((PExpressao) newChild);
+            setExpressaoSimples((PExpressaoSimples) newChild);
             return;
         }
 

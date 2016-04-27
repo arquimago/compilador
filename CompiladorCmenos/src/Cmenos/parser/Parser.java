@@ -1409,12 +1409,12 @@ public class Parser
             // Block
         PVar pvarNode2;
         TAtribuicao tatribuicaoNode3;
-        PExpressao pexpressaoNode4;
+        PExpressaoSimples pexpressaosimplesNode4;
         pvarNode2 = (PVar)nodeArrayList1.get(0);
         tatribuicaoNode3 = (TAtribuicao)nodeArrayList2.get(0);
-        pexpressaoNode4 = (PExpressao)nodeArrayList3.get(0);
+        pexpressaosimplesNode4 = (PExpressaoSimples)nodeArrayList3.get(0);
 
-        pexpressaoNode1 = new AAtribuicaoExpressao(pvarNode2, tatribuicaoNode3, pexpressaoNode4);
+        pexpressaoNode1 = new AAtribuicaoExpressao(pvarNode2, tatribuicaoNode3, pexpressaosimplesNode4);
         }
 	nodeList.add(pexpressaoNode1);
         return nodeList;
@@ -2137,8 +2137,8 @@ public class Parser
 			{{-1, REDUCE, 59}, },
 			{{-1, ERROR, 62}, {11, SHIFT, 22}, {12, SHIFT, 23}, {27, SHIFT, 24}, {33, SHIFT, 25}, },
 			{{-1, REDUCE, 35}, },
-			{{-1, REDUCE, 34}, },
 			{{-1, REDUCE, 56}, },
+			{{-1, REDUCE, 34}, },
 			{{-1, REDUCE, 49}, {16, SHIFT, 52}, {17, SHIFT, 53}, },
 			{{-1, REDUCE, 50}, {16, SHIFT, 52}, {17, SHIFT, 53}, },
 			{{-1, REDUCE, 41}, {14, SHIFT, 43}, {15, SHIFT, 44}, },
@@ -2199,10 +2199,10 @@ public class Parser
 			{{-1, 86}, },
 			{{-1, 87}, },
 			{{-1, 88}, },
-			{{-1, 26}, {24, 37}, {25, 38}, {33, 54}, {42, 64}, {62, 75}, {79, 89}, {81, 92}, {90, 95}, {93, 97}, },
-			{{-1, 27}, {8, 12}, {43, 65}, {44, 65}, {51, 65}, {52, 65}, {53, 65}, {78, 12}, },
+			{{-1, 26}, {24, 37}, {25, 38}, {33, 54}, {62, 75}, {79, 89}, {81, 92}, {90, 95}, {93, 97}, },
+			{{-1, 27}, {8, 12}, {42, 64}, {43, 64}, {44, 64}, {51, 64}, {52, 64}, {53, 64}, {78, 12}, },
 			{{-1, 15}, },
-			{{-1, 28}, },
+			{{-1, 28}, {42, 65}, },
 			{{-1, 51}, },
 			{{-1, 29}, {51, 68}, },
 			{{-1, 30}, {43, 66}, {44, 67}, },
@@ -2246,7 +2246,7 @@ public class Parser
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 1, 1, 2, 3, 3, 3, 1, 3, 3, 4, 5, 0, 6, 7, 8, 9, 1, 10, 11, 11, 7, 12, 6, 13, 14, 15, 16, 17, 12, 12, 12, 6, 18, 19, 0, 10, 11, 10, 11, 7, 20, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 14, 14, 18, 21, 3, 11, 12, 12, 6, 16, 16, 12, 12, 12, 22, 12, 12, 7, 18, 14, 21, 11, 18, 21, 1, 23, 24, 25, 24, 23, 26, 23, 23, 23, 23, 5, 6, 23, 5, 6, 23, 10, 23, 10, 27, 19, 28, 29, 23, 19, 19, 23, 23, 
+			0, 1, 1, 1, 2, 3, 3, 3, 1, 3, 3, 4, 5, 0, 6, 7, 8, 9, 1, 10, 11, 11, 7, 12, 6, 13, 14, 15, 16, 17, 12, 12, 12, 6, 18, 19, 0, 10, 11, 10, 11, 7, 20, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 14, 14, 18, 21, 3, 11, 12, 12, 6, 16, 12, 16, 12, 12, 22, 12, 12, 7, 18, 14, 21, 11, 18, 21, 1, 23, 24, 25, 24, 23, 26, 23, 23, 23, 23, 5, 6, 23, 5, 6, 23, 10, 23, 10, 27, 19, 28, 29, 23, 19, 19, 23, 23, 
         };*/
 
     static 

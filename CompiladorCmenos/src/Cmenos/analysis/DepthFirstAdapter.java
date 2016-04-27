@@ -944,9 +944,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getAtribuicao().apply(this);
         }
-        if(node.getExpressao() != null)
+        if(node.getExpressaoSimples() != null)
         {
-            node.getExpressao().apply(this);
+            node.getExpressaoSimples().apply(this);
         }
         outAAtribuicaoExpressao(node);
     }

@@ -936,9 +936,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAAtribuicaoExpressao(AAtribuicaoExpressao node)
     {
         inAAtribuicaoExpressao(node);
-        if(node.getExpressao() != null)
+        if(node.getExpressaoSimples() != null)
         {
-            node.getExpressao().apply(this);
+            node.getExpressaoSimples().apply(this);
         }
         if(node.getAtribuicao() != null)
         {

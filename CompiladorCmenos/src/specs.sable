@@ -178,7 +178,7 @@ Productions
     {com_expressao} return expressao ponto_virgula;
 
   expressao =
-    {atribuicao} var atribuicao expressao |
+    {atribuicao} var atribuicao expressao_simples |
     {atribuicao_str} var atribuicao str |
     {simples} expressao_simples;
 
@@ -195,11 +195,11 @@ Productions
     {aditiva} soma_expressao;
 
   comparacao =
-    {menor} menor|
-    {menorigual} menor_igual|
-    {maior} maior|
-    {maiorigual} maior_igual|
-    {igual} igualdade|
+    {menor} menor |
+    {menorigual} menor_igual |
+    {maior} maior |
+    {maiorigual} maior_igual |
+    {igual} igualdade |
     {dif} diferente;
 
   soma_expressao =
@@ -277,7 +277,7 @@ espressao_dec =
   {vazio} ponto_virgula;
 
 expressao_ast =
-  {atribuicao} var_ast atribuicao expressao_ast |
+  {atribuicao} var_ast atribuicao expressao_simples_ast |
   {atribuicao_str} var_ast atribuicao str |
   {simples} expressao_simples_ast;
 
@@ -302,11 +302,8 @@ expressao_simples_ast =
   {divisao} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
   {espressao} parentese_e expressao_ast parentese_d |
   {variavel} var_ast |
-  {chamada} chamada_ast |
+  {chamada} idfunc args_ast parentese_d |
   {numero} num;
-
-chamada_ast =
-  idfunc args_ast parentese_d;
 
 args_ast =
   {lista} lista_args_ast |
