@@ -2,7 +2,7 @@
 
 package Cmenos.node;
 
-public abstract class PBlocoWhile extends Node
+public abstract class PParray extends Node
 {
     // Empty body
 }

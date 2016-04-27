@@ -5,56 +5,56 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AMatrizParametro extends PParametro
+public final class ADivTermo extends PTermo
 {
-    private PTipo _tipo_;
-    private TId _id_;
-    private PParray _parray_;
+    private PTermo _termo_;
+    private TDiv _div_;
+    private PFator _fator_;
 
-    public AMatrizParametro()
+    public ADivTermo()
     {
         // Constructor
     }
 
-    public AMatrizParametro(
-        @SuppressWarnings("hiding") PTipo _tipo_,
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") PParray _parray_)
+    public ADivTermo(
+        @SuppressWarnings("hiding") PTermo _termo_,
+        @SuppressWarnings("hiding") TDiv _div_,
+        @SuppressWarnings("hiding") PFator _fator_)
     {
         // Constructor
-        setTipo(_tipo_);
+        setTermo(_termo_);
 
-        setId(_id_);
+        setDiv(_div_);
 
-        setParray(_parray_);
+        setFator(_fator_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AMatrizParametro(
-            cloneNode(this._tipo_),
-            cloneNode(this._id_),
-            cloneNode(this._parray_));
+        return new ADivTermo(
+            cloneNode(this._termo_),
+            cloneNode(this._div_),
+            cloneNode(this._fator_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAMatrizParametro(this);
+        ((Analysis) sw).caseADivTermo(this);
     }
 
-    public PTipo getTipo()
+    public PTermo getTermo()
     {
-        return this._tipo_;
+        return this._termo_;
     }
 
-    public void setTipo(PTipo node)
+    public void setTermo(PTermo node)
     {
-        if(this._tipo_ != null)
+        if(this._termo_ != null)
         {
-            this._tipo_.parent(null);
+            this._termo_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +67,19 @@ public final class AMatrizParametro extends PParametro
             node.parent(this);
         }
 
-        this._tipo_ = node;
+        this._termo_ = node;
     }
 
-    public TId getId()
+    public TDiv getDiv()
     {
-        return this._id_;
+        return this._div_;
     }
 
-    public void setId(TId node)
+    public void setDiv(TDiv node)
     {
-        if(this._id_ != null)
+        if(this._div_ != null)
         {
-            this._id_.parent(null);
+            this._div_.parent(null);
         }
 
         if(node != null)
@@ -92,19 +92,19 @@ public final class AMatrizParametro extends PParametro
             node.parent(this);
         }
 
-        this._id_ = node;
+        this._div_ = node;
     }
 
-    public PParray getParray()
+    public PFator getFator()
     {
-        return this._parray_;
+        return this._fator_;
     }
 
-    public void setParray(PParray node)
+    public void setFator(PFator node)
     {
-        if(this._parray_ != null)
+        if(this._fator_ != null)
         {
-            this._parray_.parent(null);
+            this._fator_.parent(null);
         }
 
         if(node != null)
@@ -117,37 +117,37 @@ public final class AMatrizParametro extends PParametro
             node.parent(this);
         }
 
-        this._parray_ = node;
+        this._fator_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._tipo_)
-            + toString(this._id_)
-            + toString(this._parray_);
+            + toString(this._termo_)
+            + toString(this._div_)
+            + toString(this._fator_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._tipo_ == child)
+        if(this._termo_ == child)
         {
-            this._tipo_ = null;
+            this._termo_ = null;
             return;
         }
 
-        if(this._id_ == child)
+        if(this._div_ == child)
         {
-            this._id_ = null;
+            this._div_ = null;
             return;
         }
 
-        if(this._parray_ == child)
+        if(this._fator_ == child)
         {
-            this._parray_ = null;
+            this._fator_ = null;
             return;
         }
 
@@ -158,21 +158,21 @@ public final class AMatrizParametro extends PParametro
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._tipo_ == oldChild)
+        if(this._termo_ == oldChild)
         {
-            setTipo((PTipo) newChild);
+            setTermo((PTermo) newChild);
             return;
         }
 
-        if(this._id_ == oldChild)
+        if(this._div_ == oldChild)
         {
-            setId((TId) newChild);
+            setDiv((TDiv) newChild);
             return;
         }
 
-        if(this._parray_ == oldChild)
+        if(this._fator_ == oldChild)
         {
-            setParray((PParray) newChild);
+            setFator((PFator) newChild);
             return;
         }
 

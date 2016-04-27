@@ -8,7 +8,7 @@ import Cmenos.analysis.*;
 public final class AComparativoExpressaoSimples extends PExpressaoSimples
 {
     private PSomaExpressao _exp1_;
-    private TComparador _comparador_;
+    private PComparacao _comparacao_;
     private PSomaExpressao _exp2_;
 
     public AComparativoExpressaoSimples()
@@ -18,13 +18,13 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
 
     public AComparativoExpressaoSimples(
         @SuppressWarnings("hiding") PSomaExpressao _exp1_,
-        @SuppressWarnings("hiding") TComparador _comparador_,
+        @SuppressWarnings("hiding") PComparacao _comparacao_,
         @SuppressWarnings("hiding") PSomaExpressao _exp2_)
     {
         // Constructor
         setExp1(_exp1_);
 
-        setComparador(_comparador_);
+        setComparacao(_comparacao_);
 
         setExp2(_exp2_);
 
@@ -35,7 +35,7 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
     {
         return new AComparativoExpressaoSimples(
             cloneNode(this._exp1_),
-            cloneNode(this._comparador_),
+            cloneNode(this._comparacao_),
             cloneNode(this._exp2_));
     }
 
@@ -70,16 +70,16 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
         this._exp1_ = node;
     }
 
-    public TComparador getComparador()
+    public PComparacao getComparacao()
     {
-        return this._comparador_;
+        return this._comparacao_;
     }
 
-    public void setComparador(TComparador node)
+    public void setComparacao(PComparacao node)
     {
-        if(this._comparador_ != null)
+        if(this._comparacao_ != null)
         {
-            this._comparador_.parent(null);
+            this._comparacao_.parent(null);
         }
 
         if(node != null)
@@ -92,7 +92,7 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             node.parent(this);
         }
 
-        this._comparador_ = node;
+        this._comparacao_ = node;
     }
 
     public PSomaExpressao getExp2()
@@ -125,7 +125,7 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
     {
         return ""
             + toString(this._exp1_)
-            + toString(this._comparador_)
+            + toString(this._comparacao_)
             + toString(this._exp2_);
     }
 
@@ -139,9 +139,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             return;
         }
 
-        if(this._comparador_ == child)
+        if(this._comparacao_ == child)
         {
-            this._comparador_ = null;
+            this._comparacao_ = null;
             return;
         }
 
@@ -164,9 +164,9 @@ public final class AComparativoExpressaoSimples extends PExpressaoSimples
             return;
         }
 
-        if(this._comparador_ == oldChild)
+        if(this._comparacao_ == oldChild)
         {
-            setComparador((TComparador) newChild);
+            setComparacao((PComparacao) newChild);
             return;
         }
 

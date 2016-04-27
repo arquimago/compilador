@@ -7,7 +7,11 @@ import Cmenos.analysis.*;
 @SuppressWarnings("nls")
 public final class ABlocoWhileComando extends PComando
 {
-    private PBlocoWhile _blocoWhile_;
+    private TWhile _while_;
+    private TParenteseE _parenteseE_;
+    private PExpressao _expressao_;
+    private TParenteseD _parenteseD_;
+    private PCompostoDec _compostoDec_;
 
     public ABlocoWhileComando()
     {
@@ -15,10 +19,22 @@ public final class ABlocoWhileComando extends PComando
     }
 
     public ABlocoWhileComando(
-        @SuppressWarnings("hiding") PBlocoWhile _blocoWhile_)
+        @SuppressWarnings("hiding") TWhile _while_,
+        @SuppressWarnings("hiding") TParenteseE _parenteseE_,
+        @SuppressWarnings("hiding") PExpressao _expressao_,
+        @SuppressWarnings("hiding") TParenteseD _parenteseD_,
+        @SuppressWarnings("hiding") PCompostoDec _compostoDec_)
     {
         // Constructor
-        setBlocoWhile(_blocoWhile_);
+        setWhile(_while_);
+
+        setParenteseE(_parenteseE_);
+
+        setExpressao(_expressao_);
+
+        setParenteseD(_parenteseD_);
+
+        setCompostoDec(_compostoDec_);
 
     }
 
@@ -26,7 +42,11 @@ public final class ABlocoWhileComando extends PComando
     public Object clone()
     {
         return new ABlocoWhileComando(
-            cloneNode(this._blocoWhile_));
+            cloneNode(this._while_),
+            cloneNode(this._parenteseE_),
+            cloneNode(this._expressao_),
+            cloneNode(this._parenteseD_),
+            cloneNode(this._compostoDec_));
     }
 
     @Override
@@ -35,16 +55,16 @@ public final class ABlocoWhileComando extends PComando
         ((Analysis) sw).caseABlocoWhileComando(this);
     }
 
-    public PBlocoWhile getBlocoWhile()
+    public TWhile getWhile()
     {
-        return this._blocoWhile_;
+        return this._while_;
     }
 
-    public void setBlocoWhile(PBlocoWhile node)
+    public void setWhile(TWhile node)
     {
-        if(this._blocoWhile_ != null)
+        if(this._while_ != null)
         {
-            this._blocoWhile_.parent(null);
+            this._while_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +77,151 @@ public final class ABlocoWhileComando extends PComando
             node.parent(this);
         }
 
-        this._blocoWhile_ = node;
+        this._while_ = node;
+    }
+
+    public TParenteseE getParenteseE()
+    {
+        return this._parenteseE_;
+    }
+
+    public void setParenteseE(TParenteseE node)
+    {
+        if(this._parenteseE_ != null)
+        {
+            this._parenteseE_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._parenteseE_ = node;
+    }
+
+    public PExpressao getExpressao()
+    {
+        return this._expressao_;
+    }
+
+    public void setExpressao(PExpressao node)
+    {
+        if(this._expressao_ != null)
+        {
+            this._expressao_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._expressao_ = node;
+    }
+
+    public TParenteseD getParenteseD()
+    {
+        return this._parenteseD_;
+    }
+
+    public void setParenteseD(TParenteseD node)
+    {
+        if(this._parenteseD_ != null)
+        {
+            this._parenteseD_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._parenteseD_ = node;
+    }
+
+    public PCompostoDec getCompostoDec()
+    {
+        return this._compostoDec_;
+    }
+
+    public void setCompostoDec(PCompostoDec node)
+    {
+        if(this._compostoDec_ != null)
+        {
+            this._compostoDec_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._compostoDec_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._blocoWhile_);
+            + toString(this._while_)
+            + toString(this._parenteseE_)
+            + toString(this._expressao_)
+            + toString(this._parenteseD_)
+            + toString(this._compostoDec_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._blocoWhile_ == child)
+        if(this._while_ == child)
         {
-            this._blocoWhile_ = null;
+            this._while_ = null;
+            return;
+        }
+
+        if(this._parenteseE_ == child)
+        {
+            this._parenteseE_ = null;
+            return;
+        }
+
+        if(this._expressao_ == child)
+        {
+            this._expressao_ = null;
+            return;
+        }
+
+        if(this._parenteseD_ == child)
+        {
+            this._parenteseD_ = null;
+            return;
+        }
+
+        if(this._compostoDec_ == child)
+        {
+            this._compostoDec_ = null;
             return;
         }
 
@@ -84,9 +232,33 @@ public final class ABlocoWhileComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._blocoWhile_ == oldChild)
+        if(this._while_ == oldChild)
         {
-            setBlocoWhile((PBlocoWhile) newChild);
+            setWhile((TWhile) newChild);
+            return;
+        }
+
+        if(this._parenteseE_ == oldChild)
+        {
+            setParenteseE((TParenteseE) newChild);
+            return;
+        }
+
+        if(this._expressao_ == oldChild)
+        {
+            setExpressao((PExpressao) newChild);
+            return;
+        }
+
+        if(this._parenteseD_ == oldChild)
+        {
+            setParenteseD((TParenteseD) newChild);
+            return;
+        }
+
+        if(this._compostoDec_ == oldChild)
+        {
+            setCompostoDec((PCompostoDec) newChild);
             return;
         }
 

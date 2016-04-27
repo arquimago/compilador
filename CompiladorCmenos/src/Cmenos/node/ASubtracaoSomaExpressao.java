@@ -5,26 +5,26 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASomaSomaExpressao extends PSomaExpressao
+public final class ASubtracaoSomaExpressao extends PSomaExpressao
 {
     private PSomaExpressao _somaExpressao_;
-    private TMais _mais_;
+    private TMenos _menos_;
     private PTermo _termo_;
 
-    public ASomaSomaExpressao()
+    public ASubtracaoSomaExpressao()
     {
         // Constructor
     }
 
-    public ASomaSomaExpressao(
+    public ASubtracaoSomaExpressao(
         @SuppressWarnings("hiding") PSomaExpressao _somaExpressao_,
-        @SuppressWarnings("hiding") TMais _mais_,
+        @SuppressWarnings("hiding") TMenos _menos_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setSomaExpressao(_somaExpressao_);
 
-        setMais(_mais_);
+        setMenos(_menos_);
 
         setTermo(_termo_);
 
@@ -33,16 +33,16 @@ public final class ASomaSomaExpressao extends PSomaExpressao
     @Override
     public Object clone()
     {
-        return new ASomaSomaExpressao(
+        return new ASubtracaoSomaExpressao(
             cloneNode(this._somaExpressao_),
-            cloneNode(this._mais_),
+            cloneNode(this._menos_),
             cloneNode(this._termo_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASomaSomaExpressao(this);
+        ((Analysis) sw).caseASubtracaoSomaExpressao(this);
     }
 
     public PSomaExpressao getSomaExpressao()
@@ -70,16 +70,16 @@ public final class ASomaSomaExpressao extends PSomaExpressao
         this._somaExpressao_ = node;
     }
 
-    public TMais getMais()
+    public TMenos getMenos()
     {
-        return this._mais_;
+        return this._menos_;
     }
 
-    public void setMais(TMais node)
+    public void setMenos(TMenos node)
     {
-        if(this._mais_ != null)
+        if(this._menos_ != null)
         {
-            this._mais_.parent(null);
+            this._menos_.parent(null);
         }
 
         if(node != null)
@@ -92,7 +92,7 @@ public final class ASomaSomaExpressao extends PSomaExpressao
             node.parent(this);
         }
 
-        this._mais_ = node;
+        this._menos_ = node;
     }
 
     public PTermo getTermo()
@@ -125,7 +125,7 @@ public final class ASomaSomaExpressao extends PSomaExpressao
     {
         return ""
             + toString(this._somaExpressao_)
-            + toString(this._mais_)
+            + toString(this._menos_)
             + toString(this._termo_);
     }
 
@@ -139,9 +139,9 @@ public final class ASomaSomaExpressao extends PSomaExpressao
             return;
         }
 
-        if(this._mais_ == child)
+        if(this._menos_ == child)
         {
-            this._mais_ = null;
+            this._menos_ = null;
             return;
         }
 
@@ -164,9 +164,9 @@ public final class ASomaSomaExpressao extends PSomaExpressao
             return;
         }
 
-        if(this._mais_ == oldChild)
+        if(this._menos_ == oldChild)
         {
-            setMais((TMais) newChild);
+            setMenos((TMenos) newChild);
             return;
         }
 

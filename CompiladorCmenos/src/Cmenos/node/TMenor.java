@@ -5,14 +5,14 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TSoma extends Token
+public final class TMenor extends Token
 {
-    public TSoma(String text)
+    public TMenor(String text)
     {
         setText(text);
     }
 
-    public TSoma(String text, int line, int pos)
+    public TMenor(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TSoma extends Token
     @Override
     public Object clone()
     {
-      return new TSoma(getText(), getLine(), getPos());
+      return new TMenor(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTSoma(this);
+        ((Analysis) sw).caseTMenor(this);
     }
 }

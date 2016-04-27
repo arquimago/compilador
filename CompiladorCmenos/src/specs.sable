@@ -80,10 +80,18 @@ Tokens
   {normal} str = str;
   {normal} branco = branco;
 
-  {normal} soma = mais|menos;
-  {normal} mult = divisao|multiplicacao;
+  {normal} mais = mais;
+  {normal} menos = menos;
+  {normal} mult = multiplicacao;
+  {normal} div = divisao;
 
-  {normal} comparador = menor|menor_igual|maior|maior_igual|igualdade|diferente;
+  {normal} menor = menor;
+  {normal} menor_igual = menor_igual;
+  {normal} maior = maior;
+  {normal} maior_igual = maior_igual;
+  {normal} igualdade = igualdade;
+  {normal} diferente = diferente;
+
   {normal} atribuicao = igual;
   {normal} ponto_virgula = ponto_virgula;
   {normal} virgula = ',';
@@ -115,8 +123,7 @@ Productions
     {funcao} funcao_dec;
 
   variavel_dec =
-    {nula} tipo id ponto_virgula |
-    {matriz} tipo id colchete_e num colchete_d ponto_virgula;
+    tipo var ponto_virgula;
 
   tipo =
     {t_void} void |
@@ -136,7 +143,11 @@ Productions
 
   parametro =
     {simples} tipo id |
-    {matriz} tipo id colchete_e colchete_d;
+    {matriz} tipo id parray;
+
+  parray =
+    {base} colchete_e colchete_d |
+    {geral} parray colchete_e colchete_d;
 
   composto_dec =
     {declaracoes_locais} chave_e declaracoes_locais lista_comandos chave_d;
@@ -153,18 +164,14 @@ Productions
     {expressao} espressao_dec |
     {comandos} composto_dec |
     {if} if parentese_e expressao parentese_d composto_dec |
-    {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec
-    else [f]:composto_dec |
+    {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec else [f]:composto_dec |
     {if_else} if parentese_e expressao parentese_d ponto_virgula else composto_dec|
-    {bloco_while} bloco_while |
+    {bloco_while} while parentese_e expressao parentese_d composto_dec |
     {retorno} retorno;
 
   espressao_dec =
     {espressao} expressao ponto_virgula |
     {vazio} ponto_virgula;
-
-  bloco_while =
-    while parentese_e expressao parentese_d comando;
 
   retorno =
     {vazio} return ponto_virgula |
@@ -184,15 +191,25 @@ Productions
     {array_base} colchete_e expressao colchete_d;
 
   expressao_simples =
-    {comparativo} [exp1]:soma_expressao comparador [exp2]:soma_expressao |
+    {comparativo} [exp1]:soma_expressao comparacao [exp2]:soma_expressao |
     {aditiva} soma_expressao;
 
+  comparacao =
+    {menor} menor|
+    {menorigual} menor_igual|
+    {maior} maior|
+    {maiorigual} maior_igual|
+    {igual} igualdade|
+    {dif} diferente;
+
   soma_expressao =
-    {soma} soma_expressao soma termo |
+    {soma} soma_expressao mais termo |
+    {subtracao} soma_expressao menos termo |
     {termo} termo;
 
   termo =
     {mult} termo mult fator |
+    {div} termo div fator |
     {fator} fator;
 
   fator =
@@ -215,76 +232,87 @@ Productions
 /*
 Abstract Syntax Tree
 
-programa =
-  declaracao+;
+programa_ast =
+  declaracao_ast+;
 
-declaracao =
-  {variavel} variavel_dec |
-  {funcao} tipo id parentese_e parametros parentese_d composto_dec;
+declaracao_ast =
+  {variavel} variavel_dec_ast |
+  {funcao} tipo_ast id parentese_e parametros_ast parentese_d composto_dec_ast;
 
-variavel_dec =
-  {nula} tipo id ponto_virgula |
-  {matriz} tipo id colchete_e num colchete_d ponto_virgula;
+variavel_dec_ast =
+  {nula} tipo_ast id ponto_virgula |
+  {matriz} tipo_ast id colchete_e num colchete_d ponto_virgula;
 
-tipo =
+tipo_ast =
   {t_void} void |
   {t_int} int |
   {t_str} string;
 
-parametros =
-  {parametros} parametros virgula parametro |
-  {parametro} parametro;
+parametros_ast =
+  {parametros} parametros_ast virgula parametro_ast |
+  {parametro} parametro_ast;
 
-parametro =
-  {simples} tipo id |
-  {matriz} tipo id colchete_e colchete_d;
+parametro_ast =
+  {simples} tipo_ast id |
+  {matriz} tipo_ast id parray_ast;
 
-composto_dec =
-  {declaracoes_locais} chave_e variavel_dec* comando* chave_d;
+parray_ast =
+  {base} colchete_e colchete_d |
+  {geral} parray_ast colchete_e colchete_d;
 
-comando =
-  {expressao} espressao_dec |
-  {comandos} composto_dec |
-  {if} if parentese_e expressao parentese_d composto_dec |
-  {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec else [f]:composto_dec |
-  {bloco_while} while parentese_e expressao parentese_d comando|
-  {retorno} return expressao ponto_virgula |
-  {retorno_vazio} return ponto_virgula;
+composto_dec_ast =
+  {declaracoes_locais} chave_e variavel_dec_ast* comando_ast* chave_d;
+
+comando_ast =
+  {expressao} espressao_dec_ast |
+  {comandos} composto_dec_ast |
+  {if} if parentese_e expressao_ast parentese_d composto_dec_ast |
+  {if_then_else} if parentese_e expressao_ast parentese_d [v]:composto_dec_ast else [f]:composto_dec_ast |
+  {bloco_while} while parentese_e expressao_ast parentese_d composto_dec_ast |
+  {retorno} return expressao_ast ponto_virgula |
+  {retorno_vazio} return_ast ponto_virgula;
 
 espressao_dec =
-  {espressao} expressao ponto_virgula |
+  {espressao} expressao_ast ponto_virgula |
   {vazio} ponto_virgula;
 
-expressao =
-  {atribuicao} var atribuicao expressao |
-  {atribuicao_str} var atribuicao str |
-  {simples} expressao_simples;
+expressao_ast =
+  {atribuicao} var_ast atribuicao expressao_ast |
+  {atribuicao_str} var_ast atribuicao str |
+  {simples} expressao_simples_ast;
 
-var =
+var_ast =
   {id_simples} id |
-  {id_array} id array;
+  {id_array} id array_ast;
 
-array =
-  {array_multiplo} array colchete_e expressao colchete_d |
-  {array_base} colchete_e expressao colchete_d;
+array_ast =
+  {array_multiplo} array_ast colchete_e expressao_ast colchete_d |
+  {array_base} colchete_e expressao_ast colchete_d;
 
-expressao_simples =
-  {comparativo} [exp1]:expressao_simples [exp2]:expressao_simples|
-  {aditiva} [exp1]:expressao_simples [exp2]:expressao_simples|
-  {multiplicativa} [exp1]:expressao_simples [exp2]:expressao_simples|
-  {espressao} parentese_e expressao parentese_d |
-  {variavel} var |
-  {chamada} chamada |
+expressao_simples_ast =
+  {menor} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {menorigual} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {maior} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {maiorigual} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {igual} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {dif} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {aditiva} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {subtrativa} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {multiplicativa} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {divisao} [exp1]:expressao_simples_ast [exp2]:expressao_simples_ast|
+  {espressao} parentese_e expressao_ast parentese_d |
+  {variavel} var_ast |
+  {chamada} chamada_ast |
   {numero} num;
 
-chamada =
-  idfunc args parentese_d;
+chamada_ast =
+  idfunc args_ast parentese_d;
 
-args =
-  {lista} lista_args |
+args_ast =
+  {lista} lista_args_ast |
   {vazio} ;
 
-lista_args =
-  {lista} lista_args virgula expressao |
-  {expressao} expressao;
+lista_args_ast =
+  {lista} lista_args_ast virgula expressao_ast |
+  {expressao} expressao_ast;
 */

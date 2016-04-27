@@ -105,13 +105,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseANulaVariavelDec(ANulaVariavelDec node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAMatrizVariavelDec(AMatrizVariavelDec node)
+    public void caseAVariavelDec(AVariavelDec node)
     {
         defaultCase(node);
     }
@@ -172,6 +166,18 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAMatrizParametro(AMatrizParametro node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABaseParray(ABaseParray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAGeralParray(AGeralParray node)
     {
         defaultCase(node);
     }
@@ -261,12 +267,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseABlocoWhile(ABlocoWhile node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseAVazioRetorno(AVazioRetorno node)
     {
         defaultCase(node);
@@ -333,7 +333,49 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAMenorComparacao(AMenorComparacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorigualComparacao(AMenorigualComparacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorComparacao(AMaiorComparacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorigualComparacao(AMaiorigualComparacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIgualComparacao(AIgualComparacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADifComparacao(ADifComparacao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseASomaSomaExpressao(ASomaSomaExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASubtracaoSomaExpressao(ASubtracaoSomaExpressao node)
     {
         defaultCase(node);
     }
@@ -346,6 +388,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAMultTermo(AMultTermo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADivTermo(ADivTermo node)
     {
         defaultCase(node);
     }
@@ -525,7 +573,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTSoma(TSoma node)
+    public void caseTMais(TMais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMenos(TMenos node)
     {
         defaultCase(node);
     }
@@ -537,7 +591,43 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTComparador(TComparador node)
+    public void caseTDiv(TDiv node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMenor(TMenor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMenorIgual(TMenorIgual node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMaior(TMaior node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMaiorIgual(TMaiorIgual node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTIgualdade(TIgualdade node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTDiferente(TDiferente node)
     {
         defaultCase(node);
     }

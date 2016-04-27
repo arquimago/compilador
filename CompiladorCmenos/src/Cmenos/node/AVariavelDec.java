@@ -5,26 +5,26 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANulaVariavelDec extends PVariavelDec
+public final class AVariavelDec extends PVariavelDec
 {
     private PTipo _tipo_;
-    private TId _id_;
+    private PVar _var_;
     private TPontoVirgula _pontoVirgula_;
 
-    public ANulaVariavelDec()
+    public AVariavelDec()
     {
         // Constructor
     }
 
-    public ANulaVariavelDec(
+    public AVariavelDec(
         @SuppressWarnings("hiding") PTipo _tipo_,
-        @SuppressWarnings("hiding") TId _id_,
+        @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
     {
         // Constructor
         setTipo(_tipo_);
 
-        setId(_id_);
+        setVar(_var_);
 
         setPontoVirgula(_pontoVirgula_);
 
@@ -33,16 +33,16 @@ public final class ANulaVariavelDec extends PVariavelDec
     @Override
     public Object clone()
     {
-        return new ANulaVariavelDec(
+        return new AVariavelDec(
             cloneNode(this._tipo_),
-            cloneNode(this._id_),
+            cloneNode(this._var_),
             cloneNode(this._pontoVirgula_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANulaVariavelDec(this);
+        ((Analysis) sw).caseAVariavelDec(this);
     }
 
     public PTipo getTipo()
@@ -70,16 +70,16 @@ public final class ANulaVariavelDec extends PVariavelDec
         this._tipo_ = node;
     }
 
-    public TId getId()
+    public PVar getVar()
     {
-        return this._id_;
+        return this._var_;
     }
 
-    public void setId(TId node)
+    public void setVar(PVar node)
     {
-        if(this._id_ != null)
+        if(this._var_ != null)
         {
-            this._id_.parent(null);
+            this._var_.parent(null);
         }
 
         if(node != null)
@@ -92,7 +92,7 @@ public final class ANulaVariavelDec extends PVariavelDec
             node.parent(this);
         }
 
-        this._id_ = node;
+        this._var_ = node;
     }
 
     public TPontoVirgula getPontoVirgula()
@@ -125,7 +125,7 @@ public final class ANulaVariavelDec extends PVariavelDec
     {
         return ""
             + toString(this._tipo_)
-            + toString(this._id_)
+            + toString(this._var_)
             + toString(this._pontoVirgula_);
     }
 
@@ -139,9 +139,9 @@ public final class ANulaVariavelDec extends PVariavelDec
             return;
         }
 
-        if(this._id_ == child)
+        if(this._var_ == child)
         {
-            this._id_ = null;
+            this._var_ = null;
             return;
         }
 
@@ -164,9 +164,9 @@ public final class ANulaVariavelDec extends PVariavelDec
             return;
         }
 
-        if(this._id_ == oldChild)
+        if(this._var_ == oldChild)
         {
-            setId((TId) newChild);
+            setVar((PVar) newChild);
             return;
         }
 

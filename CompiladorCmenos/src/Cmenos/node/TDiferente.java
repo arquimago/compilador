@@ -5,14 +5,14 @@ package Cmenos.node;
 import Cmenos.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TComparador extends Token
+public final class TDiferente extends Token
 {
-    public TComparador(String text)
+    public TDiferente(String text)
     {
         setText(text);
     }
 
-    public TComparador(String text, int line, int pos)
+    public TDiferente(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TComparador extends Token
     @Override
     public Object clone()
     {
-      return new TComparador(getText(), getLine(), getPos());
+      return new TDiferente(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTComparador(this);
+        ((Analysis) sw).caseTDiferente(this);
     }
 }
