@@ -8,6 +8,7 @@ import Cmenos.analysis.*;
 public final class AListaListaArgs extends PListaArgs
 {
     private PListaArgs _listaArgs_;
+    private TVirgula _virgula_;
     private PExpressao _expressao_;
 
     public AListaListaArgs()
@@ -17,10 +18,13 @@ public final class AListaListaArgs extends PListaArgs
 
     public AListaListaArgs(
         @SuppressWarnings("hiding") PListaArgs _listaArgs_,
+        @SuppressWarnings("hiding") TVirgula _virgula_,
         @SuppressWarnings("hiding") PExpressao _expressao_)
     {
         // Constructor
         setListaArgs(_listaArgs_);
+
+        setVirgula(_virgula_);
 
         setExpressao(_expressao_);
 
@@ -31,6 +35,7 @@ public final class AListaListaArgs extends PListaArgs
     {
         return new AListaListaArgs(
             cloneNode(this._listaArgs_),
+            cloneNode(this._virgula_),
             cloneNode(this._expressao_));
     }
 
@@ -65,6 +70,31 @@ public final class AListaListaArgs extends PListaArgs
         this._listaArgs_ = node;
     }
 
+    public TVirgula getVirgula()
+    {
+        return this._virgula_;
+    }
+
+    public void setVirgula(TVirgula node)
+    {
+        if(this._virgula_ != null)
+        {
+            this._virgula_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._virgula_ = node;
+    }
+
     public PExpressao getExpressao()
     {
         return this._expressao_;
@@ -95,6 +125,7 @@ public final class AListaListaArgs extends PListaArgs
     {
         return ""
             + toString(this._listaArgs_)
+            + toString(this._virgula_)
             + toString(this._expressao_);
     }
 
@@ -105,6 +136,12 @@ public final class AListaListaArgs extends PListaArgs
         if(this._listaArgs_ == child)
         {
             this._listaArgs_ = null;
+            return;
+        }
+
+        if(this._virgula_ == child)
+        {
+            this._virgula_ = null;
             return;
         }
 
@@ -124,6 +161,12 @@ public final class AListaListaArgs extends PListaArgs
         if(this._listaArgs_ == oldChild)
         {
             setListaArgs((PListaArgs) newChild);
+            return;
+        }
+
+        if(this._virgula_ == oldChild)
+        {
+            setVirgula((TVirgula) newChild);
             return;
         }
 

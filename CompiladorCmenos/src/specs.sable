@@ -212,104 +212,79 @@ Productions
     {lista} lista_args virgula expressao |
     {expressao} expressao;
 
-
+/*
 Abstract Syntax Tree
 
-  programa =
-    declaracoes*;
+programa =
+  declaracao+;
 
-  declaracao =
-    {variavel} variavel_dec |
-    {funcao} funcao_dec;
+declaracao =
+  {variavel} variavel_dec |
+  {funcao} tipo id parentese_e parametros parentese_d composto_dec;
 
-  variavel_dec =
-    {nula} tipo id ponto_virgula |
-    {matriz} tipo id colchete_e num colchete_d ponto_virgula;
+variavel_dec =
+  {nula} tipo id ponto_virgula |
+  {matriz} tipo id colchete_e num colchete_d ponto_virgula;
 
-  tipo =
-    {t_void} void |
-    {t_int} int |
-    {t_str} string;
+tipo =
+  {t_void} void |
+  {t_int} int |
+  {t_str} string;
 
-  funcao_dec =
-    tipo id parentese_e parametros parentese_d composto_dec;
+parametros =
+  {parametros} parametros virgula parametro |
+  {parametro} parametro;
 
-  parametros =
-    {lista} lista_parametros |
-    {vazio} void;
+parametro =
+  {simples} tipo id |
+  {matriz} tipo id colchete_e colchete_d;
 
-  lista_parametros =
-    {parametros} lista_parametros virgula parametro |
-    {parametro} parametro;
+composto_dec =
+  {declaracoes_locais} chave_e variavel_dec* comando* chave_d;
 
-  parametro =
-    {simples} tipo id |
-    {matriz} tipo id colchete_e colchete_d;
+comando =
+  {expressao} espressao_dec |
+  {comandos} composto_dec |
+  {if} if parentese_e expressao parentese_d composto_dec |
+  {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec else [f]:composto_dec |
+  {bloco_while} while parentese_e expressao parentese_d comando|
+  {retorno} return expressao ponto_virgula |
+  {retorno_vazio} return ponto_virgula;
 
-  composto_dec =
-    {declaracoes_locais} chave_e declaracoes_locais lista_comandos chave_d;
+espressao_dec =
+  {espressao} expressao ponto_virgula |
+  {vazio} ponto_virgula;
 
-  declaracoes_locais =
-    {lista} declaracoes_locais variavel_dec |
-    {vazio} ;
+expressao =
+  {atribuicao} var atribuicao expressao |
+  {atribuicao_str} var atribuicao str |
+  {simples} expressao_simples;
 
-  lista_comandos =
-    {lista} lista_comandos comando |
-    {vazio} ;
+var =
+  {id_simples} id |
+  {id_array} id array;
 
-  comando =
-    {expressao} espressao_dec |
-    {comandos} composto_dec |
-    {if} if parentese_e expressao parentese_d composto_dec |
-    {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec
-    else [f]:composto_dec |
-    {if_else} if parentese_e expressao parentese_d ponto_virgula else composto_dec|
-    {bloco_while} bloco_while |
-    {retorno} retorno;
+array =
+  {array_multiplo} array colchete_e expressao colchete_d |
+  {array_base} colchete_e expressao colchete_d;
 
-  espressao_dec =
-    {espressao} expressao ponto_virgula |
-    {vazio} ponto_virgula;
+expressao_simples =
+  {comparativo} [exp1]:expressao_simples [exp2]:expressao_simples|
+  {aditiva} [exp1]:expressao_simples [exp2]:expressao_simples|
+  {multiplicativa} [exp1]:expressao_simples [exp2]:expressao_simples|
+  {espressao} parentese_e expressao parentese_d |
+  {variavel} var |
+  {chamada} chamada |
+  {numero} num;
 
-  bloco_while =
-    while parentese_e expressao parentese_d comando;
+chamada =
+  idfunc args parentese_d;
 
-  retorno =
-    {vazio} return ponto_virgula |
-    {com_expressao} return expressao ponto_virgula;
+args =
+  {lista} lista_args |
+  {vazio} ;
 
-  expressao =
-    {atribuicao} var atribuicao expressao |
-    {atribuicao_str} var atribuicao str |
-    {simples} expressao_simples;
-
-  var =
-    {id_simples} id |
-    {id_array} id array;
-
-  array =
-    {array_multiplo} array colchete_e expressao colchete_d |
-    {array_base} colchete_e expressao colchete_d;
-
-  expressao_simples =
-    {comparativo} [exp1]:conta_expressao comparador [exp2]:conta_expressao |
-    {aditiva} conta_expressao;
-
-  conta_expressao =
-    {soma} [exp1]:conta_expressao soma [exp2]:conta_expressao |
-    {mult} [exp1]:conta_expressao mult [exp2]:conta_expressao |
-    {fator} fator;
-
-  fator =
-    {espressao} parentese_e expressao parentese_d |
-    {variavel} var |
-    {chamada}  idfunc args parentese_d |
-    {numero} num;
-
-  args =
-    {lista} lista_args |
-    {vazio} ;
-
-  lista_args =
-    {lista} lista_args virgula expressao |
-    {expressao} expressao;
+lista_args =
+  {lista} lista_args virgula expressao |
+  {expressao} expressao;
+*/

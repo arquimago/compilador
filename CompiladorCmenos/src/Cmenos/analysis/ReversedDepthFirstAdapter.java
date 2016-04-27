@@ -1448,6 +1448,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getExpressao().apply(this);
         }
+        if(node.getVirgula() != null)
+        {
+            node.getVirgula().apply(this);
+        }
         if(node.getListaArgs() != null)
         {
             node.getListaArgs().apply(this);

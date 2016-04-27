@@ -1448,6 +1448,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getListaArgs().apply(this);
         }
+        if(node.getVirgula() != null)
+        {
+            node.getVirgula().apply(this);
+        }
         if(node.getExpressao() != null)
         {
             node.getExpressao().apply(this);

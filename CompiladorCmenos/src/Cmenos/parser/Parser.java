@@ -1819,17 +1819,20 @@ public class Parser
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
         PListaArgs plistaargsNode1;
         {
             // Block
         PListaArgs plistaargsNode2;
-        PExpressao pexpressaoNode3;
+        TVirgula tvirgulaNode3;
+        PExpressao pexpressaoNode4;
         plistaargsNode2 = (PListaArgs)nodeArrayList1.get(0);
-        pexpressaoNode3 = (PExpressao)nodeArrayList2.get(0);
+        tvirgulaNode3 = (TVirgula)nodeArrayList2.get(0);
+        pexpressaoNode4 = (PExpressao)nodeArrayList3.get(0);
 
-        plistaargsNode1 = new AListaListaArgs(plistaargsNode2, pexpressaoNode3);
+        plistaargsNode1 = new AListaListaArgs(plistaargsNode2, tvirgulaNode3, pexpressaoNode4);
         }
 	nodeList.add(plistaargsNode1);
         return nodeList;
@@ -1925,7 +1928,7 @@ public class Parser
 			{{-1, ERROR, 63}, {21, SHIFT, 77}, },
 			{{-1, REDUCE, 55}, },
 			{{-1, ERROR, 65}, {21, SHIFT, 78}, },
-			{{-1, REDUCE, 52}, {11, SHIFT, 39}, {12, SHIFT, 40}, {20, SHIFT, 42}, {26, SHIFT, 44}, },
+			{{-1, REDUCE, 52}, {19, SHIFT, 79}, },
 			{{-1, REDUCE, 29}, },
 			{{-1, ERROR, 68}, {11, SHIFT, 39}, {12, SHIFT, 40}, {13, SHIFT, 80}, {20, SHIFT, 42}, {26, SHIFT, 44}, },
 			{{-1, ERROR, 69}, {11, SHIFT, 39}, {12, SHIFT, 40}, {20, SHIFT, 42}, {26, SHIFT, 44}, },
@@ -1938,23 +1941,24 @@ public class Parser
 			{{-1, ERROR, 76}, {11, SHIFT, 39}, {12, SHIFT, 40}, {20, SHIFT, 42}, {26, SHIFT, 44}, },
 			{{-1, REDUCE, 47}, },
 			{{-1, REDUCE, 51}, },
-			{{-1, REDUCE, 54}, },
+			{{-1, ERROR, 79}, {11, SHIFT, 39}, {12, SHIFT, 40}, {20, SHIFT, 42}, {26, SHIFT, 44}, },
 			{{-1, REDUCE, 35}, },
 			{{-1, REDUCE, 34}, },
 			{{-1, REDUCE, 48}, },
 			{{-1, REDUCE, 43}, {15, SHIFT, 71}, },
 			{{-1, REDUCE, 41}, {14, SHIFT, 69}, },
 			{{-1, REDUCE, 45}, },
-			{{-1, ERROR, 86}, {18, SHIFT, 90}, {24, SHIFT, 26}, },
+			{{-1, ERROR, 86}, {18, SHIFT, 91}, {24, SHIFT, 26}, },
 			{{-1, ERROR, 87}, {2, SHIFT, 36}, {6, SHIFT, 37}, {8, SHIFT, 38}, {11, SHIFT, 39}, {12, SHIFT, 40}, {18, SHIFT, 41}, {20, SHIFT, 42}, {24, SHIFT, 26}, {26, SHIFT, 44}, },
 			{{-1, REDUCE, 40}, },
-			{{-1, ERROR, 89}, {23, SHIFT, 93}, },
-			{{-1, ERROR, 90}, {3, SHIFT, 94}, },
-			{{-1, REDUCE, 24}, {3, SHIFT, 95}, },
+			{{-1, ERROR, 89}, {23, SHIFT, 94}, },
+			{{-1, REDUCE, 54}, },
+			{{-1, ERROR, 91}, {3, SHIFT, 95}, },
+			{{-1, REDUCE, 24}, {3, SHIFT, 96}, },
 			{{-1, REDUCE, 31}, },
 			{{-1, REDUCE, 39}, },
-			{{-1, ERROR, 94}, {24, SHIFT, 26}, },
 			{{-1, ERROR, 95}, {24, SHIFT, 26}, },
+			{{-1, ERROR, 96}, {24, SHIFT, 26}, },
 			{{-1, REDUCE, 26}, },
 			{{-1, REDUCE, 25}, },
         };*/
@@ -1969,14 +1973,14 @@ public class Parser
 			{{-1, 17}, },
 			{{-1, 18}, },
 			{{-1, 19}, {23, 28}, },
-			{{-1, 45}, {22, 27}, {86, 91}, {94, 96}, {95, 97}, },
+			{{-1, 45}, {22, 27}, {86, 92}, {95, 97}, {96, 98}, },
 			{{-1, 31}, },
 			{{-1, 34}, },
-			{{-1, 46}, {87, 92}, },
+			{{-1, 46}, {87, 93}, },
 			{{-1, 47}, },
 			{{-1, 48}, },
 			{{-1, 49}, },
-			{{-1, 50}, {37, 59}, {42, 63}, {44, 64}, {57, 72}, {60, 74}, {61, 75}, {66, 79}, {68, 81}, {76, 89}, },
+			{{-1, 50}, {37, 59}, {42, 63}, {44, 64}, {57, 72}, {60, 74}, {61, 75}, {68, 81}, {76, 89}, {79, 90}, },
 			{{-1, 51}, {69, 82}, {70, 82}, {71, 82}, },
 			{{-1, 62}, },
 			{{-1, 52}, },
@@ -2008,16 +2012,16 @@ public class Parser
 			"expecting: ponto virgula, colchete e",
 			"expecting: parentese e",
 			"expecting: id, num, ponto virgula, parentese e, idfunc",
-			"expecting: id, num, soma, mult, comparador, atribuicao, ponto virgula, parentese e, parentese d, colchete e, colchete d, idfunc",
-			"expecting: id, num, soma, mult, comparador, ponto virgula, parentese e, parentese d, colchete d, idfunc",
+			"expecting: soma, mult, comparador, atribuicao, ponto virgula, ',', parentese d, colchete e, colchete d",
+			"expecting: soma, mult, comparador, ponto virgula, ',', parentese d, colchete d",
 			"expecting: id, num, parentese e, idfunc",
 			"expecting: 'if', 'else', 'int', 'string', 'return', 'void', 'while', id, num, ponto virgula, parentese e, chave e, chave d, idfunc, EOF",
 			"expecting: id, num, parentese e, parentese d, idfunc",
-			"expecting: id, num, soma, mult, comparador, atribuicao, ponto virgula, parentese e, parentese d, colchete d, idfunc",
-			"expecting: id, num, ponto virgula, parentese e, parentese d, colchete d, idfunc",
-			"expecting: id, num, soma, comparador, ponto virgula, parentese e, parentese d, colchete d, idfunc",
+			"expecting: soma, mult, comparador, atribuicao, ponto virgula, ',', parentese d, colchete d",
+			"expecting: ponto virgula, ',', parentese d, colchete d",
+			"expecting: soma, comparador, ponto virgula, ',', parentese d, colchete d",
 			"expecting: id, num, str, parentese e, idfunc",
-			"expecting: id, num, soma, ponto virgula, parentese e, parentese d, colchete d, idfunc",
+			"expecting: soma, ponto virgula, ',', parentese d, colchete d",
 			"expecting: ponto virgula, chave e",
 			"expecting: 'if', 'return', 'while', id, num, ponto virgula, parentese e, chave e, idfunc",
 			"expecting: 'else'",
@@ -2025,7 +2029,7 @@ public class Parser
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 1, 1, 2, 3, 3, 3, 1, 3, 3, 4, 5, 0, 6, 7, 1, 8, 9, 9, 10, 11, 12, 0, 13, 10, 14, 3, 9, 5, 9, 14, 14, 1, 15, 16, 17, 18, 17, 19, 20, 15, 21, 22, 23, 15, 15, 15, 15, 15, 13, 24, 25, 26, 20, 20, 20, 21, 15, 13, 21, 21, 19, 8, 23, 8, 23, 15, 27, 21, 21, 21, 8, 15, 8, 10, 21, 20, 20, 23, 25, 25, 20, 20, 28, 20, 29, 30, 19, 10, 31, 32, 15, 19, 12, 12, 15, 15, 
+			0, 1, 1, 1, 2, 3, 3, 3, 1, 3, 3, 4, 5, 0, 6, 7, 1, 8, 9, 9, 10, 11, 12, 0, 13, 10, 14, 3, 9, 5, 9, 14, 14, 1, 15, 16, 17, 18, 17, 19, 20, 15, 21, 22, 23, 15, 15, 15, 15, 15, 13, 24, 25, 26, 20, 20, 20, 21, 15, 13, 21, 21, 19, 8, 9, 8, 9, 15, 27, 21, 21, 21, 8, 15, 8, 10, 21, 20, 20, 21, 25, 25, 20, 20, 28, 20, 29, 30, 19, 10, 9, 31, 32, 15, 19, 12, 12, 15, 15, 
         };*/
 
     static 
