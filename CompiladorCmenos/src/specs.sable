@@ -113,179 +113,165 @@ Ignored Tokens
 Productions
 
   programa {-> programa}=
-    lista_declaracoes main_dec {New programa([lista_declaracoes.declaracao, main_dec.declaracao])};
+    lista_declaracoes main_dec {-> New programa([lista_declaracoes.declaracao, main_dec.declaracao])};
 
   lista_declaracoes {-> declaracao*}=
     {lista} lista_declaracoes declaracao {-> [declaracao]}|
-    {declaracao} declaracao {-> declaracao };
+    {declaracao} declaracao {-> declaracao.declaracao };
 
   declaracao {-> declaracao}=
-    {variavel} variavel_dec  {-> variavel_dec}|
-    {funcao} funcao_dec {-> funcao_dec};
+    {variavel} tipo var ponto_virgula {-> New declaracao.variavel_dec(tipo.tipo, var.var)}|
+    //{variavel} variavel_dec  {-> }|
+    //{declaracao} funcao_dec {-> declaracao}|
+    {funcao_dec} tipo id parentese_e parametros parentese_d composto_dec {-> New declaracao.funcao_dec(tipo.tipo, id, [parametros.parametro], composto_dec.composto_dec)};
 
-  main_dec { -> declaracao} =
-    int main parentese_e parametros parentese_d composto_dec { -> New declaracao.funcao_dec(tipo.tipo, id, composto_dec.composto_dec};
+  main_dec {-> declaracao} =
+    int main parentese_e parametros parentese_d composto_dec {-> New declaracao.main(int, main, [parametros.parametro], composto_dec.composto_dec)};
 
-  variavel_dec {-> variavel_dec}=
-    tipo var ponto_virgula {New variavel_dec(tipo.tipo, var.var)};
+  //variavel_dec {-> declaracao}=
+    //tipo var ponto_virgula {-> New declaracao.variavel_dec(tipo.tipo, var.var)};
 
   tipo {-> tipo} =
-    {t_void} void {New tipo.t_void(void)}|
-    {t_int} int {New tipo.t_int(int)}|
-    {t_str} string {New tipo.t_str(string)};
+    {t_void} void {-> New tipo.t_void(void)}|
+    {t_int} int {-> New tipo.t_int(int)}|
+    {t_str} string {-> New tipo.t_str(string)};
 
-  funcao_dec {-> declaracao}=
-    tipo id parentese_e parametros parentese_d composto_dec { -> New declaracao.funcao_dec(tipo.tipo, id, composto_dec.composto_dec};
+  //funcao_dec {-> declaracao}=
+    //tipo id parentese_e parametros parentese_d composto_dec {-> New declaracao.funcao_dec(tipo.tipo, id, [parametros.parametro], composto_dec.composto_dec)};
 
-  parametros {-> parametros} =
-    {lista} lista_parametros {-> lista_parametros}|
+  parametros {-> parametro} =
+    {lista} lista_parametros {-> [lista_parametros.parametro]}|
     {vazio} void {-> []};
 
-  lista_parametros {-> lista_parametros}=
-    {parametros} lista_parametros virgula parametro {New lista_paramentros(lista_parametros.lista_parametros, parametro.parametro)}|
-    {parametro} parametro {New lista_parametros(parametro.parametro)};
+  lista_parametros {-> parametro}=
+    {parametros} lista_parametros virgula parametro {-> [parametro]}|
+    {parametro} parametro {-> parametro};
 
   parametro {-> parametro}=
-    {simples} tipo id {New parametro(tipo.tipo, id)}|
-    {matriz} tipo id parray {New parametro(tipo.tipo, id)};
+    {simples} tipo id {-> New parametro(tipo.tipo, id)}|
+    {matriz} tipo id parray {-> New parametro(tipo.tipo, id)};
 
-  parray {-> []]}=
+  parray {-> parray}=
     {base} colchete_e colchete_d {-> []}|
     {geral} parray colchete_e colchete_d {-> []};
 
   composto_dec {-> composto_dec}=
-    chave_e declaracoes_locais lista_comandos chave_d {New composto_dec([declaracoes_locais.variavel_dec],[lista_comandos.comando])};
+    chave_e declaracoes_locais lista_comandos chave_d {-> New composto_dec([declaracoes_locais.declaracao],[lista_comandos.comando])};
 
-  declaracoes_locais {-> variavel_dec}=
-    {lista} declaracoes_locais variavel_dec {-> variavel_dec*}|
+  declaracoes_locais {-> declaracao}=
+    {lista} declaracoes_locais declaracao {-> [declaracao]}|
     {vazio} {-> []};
 
   lista_comandos {-> comando}=
-    {lista} comando lista_comandos {-> [comando]}|
-    {retorno} retorno {-> comando};
+    {lista} comando lista_comandos retorno {-> [comando]};
+    //{retorno} retorno {-> comando};
 
   comando {-> comando}=
-    //{output} |
-    //{input} |
-    {expressao} expressao_dec {New comando(expressao_dec.expressao_dec)}|
-    {comandos} composto_dec {New comando(composto_dec.composto_dec)}|
-    {if} if parentese_e expressao parentese_d composto_dec {New comando(if, expressao.expressao, composto_dec.composto_dec)}|
-    {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec else [f]:composto_dec {New comando(if,expressao.expressao, v.composto_dec, f.composto_dec)}|
-    //{if_else} if parentese_e expressao parentese_d ponto_virgula else composto_dec {New comando}|
-    {bloco_while} while parentese_e expressao parentese_d composto_dec {New comando(while, expressao.expressao, composto_dec.composto_dec)};
+    //{output} output parentese_e var parentese_d {-> New output(var)}|
+    //{input} input parentese_e var parentese_d {-> New input(var)}|
+    {expressao} expressao_dec {-> expressao_dec}|
+    {comandos} composto_dec {-> composto_dec}|
+    {if} if parentese_e expressao parentese_d composto_dec {-> New comando.if(expressao.expressao, composto_dec.composto_dec)}|
+    {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec else [f]:composto_dec {-> New comando.if_then_else(expressao.expressao, v.composto_dec, f.composto_dec)}|
+    //{if_else} if parentese_e expressao parentese_d ponto_virgula else composto_dec {-> New comando}|
+    {bloco_while} while parentese_e expressao parentese_d composto_dec {-> New comando.bloco_while(expressao.expressao, composto_dec.composto_dec)};
 
   expressao_dec {-> expressao_dec} =
-    {expressao} expressao ponto_virgula {-> expressao_dec}|
+    {expressao} expressao ponto_virgula {-> expressao}|
     {vazio} ponto_virgula {-> []};
 
   retorno {-> comando}=
-    {vazio} return ponto_virgula {-> []}|
-    {com_expressao} return expressao ponto_virgula {New comando(return.retorno, expressao.expressao)};
+    {vazio} return ponto_virgula {-> New comando.retorno_vazio()}|
+    {com_expressao} return expressao ponto_virgula {-> New comando.retorno(expressao.expressao)};
 
   expressao {-> expressao}=
-    {atribuicao} var atribuicao expressao_simples |
-    {atribuicao_str} var atribuicao str |
-    {simples} expressao_simples;
+    {atribuicao} var atribuicao expressao_simples {-> New expressao.atribuicao(var.var, expressao_simples.expressao_simples)}|
+    {atribuicao_str} var atribuicao str {-> New expressao.atribuicao_str(var.var, str)}|
+    {simples} expressao_simples {-> New expressao.simples(expressao_simples.expressao_simples)};
 
-  var =
-    {id_simples} id |
-    {id_array} id array;
+  var {-> var}=
+    {id_simples} id {-> New var.id_simples(id)}|
+    {id_array} id array {-> New var.id_array(id, array.array)};
 
-  array =
-    {array_multiplo} array colchete_e expressao colchete_d |
-    {array_base} colchete_e expressao colchete_d;
+  array {-> array}=
+    {array_multiplo} array colchete_e expressao colchete_d {-> [expressao]}|
+    {array_base} colchete_e expressao colchete_d {-> expressao};
 
-  expressao_simples =
-    {comparativo} [exp1]:soma_expressao comparacao [exp2]:soma_expressao |
-    {aditiva} soma_expressao;
+  expressao_simples {-> expressao_simples}=
+    {menor} [exp1]:soma_expressao menor [exp2]:soma_expressao {-> New expressao_simples.menor(exp1.expressao_simples, exp2.expressao_simples)}|
+    {menorigual} [exp1]:soma_expressao menor_igual [exp2]:soma_expressao {-> New expressao_simples.menorigual(exp1.expressao_simples, exp2.expressao_simples)}|
+    {maior} [exp1]:soma_expressao maior [exp2]:soma_expressao {-> New expressao_simples.maior(exp1.expressao_simples, exp2.expressao_simples)}|
+    {maiorigual} [exp1]:soma_expressao maior_igual [exp2]:soma_expressao {-> New expressao_simples.maiorigual(exp1.expressao_simples, exp2.expressao_simples)}|
+    {igual} [exp1]:soma_expressao igualdade [exp2]:soma_expressao {-> New expressao_simples.igual(exp1.expressao_simples, exp2.expressao_simples)}|
+    {dif} [exp1]:soma_expressao diferente [exp2]:soma_expressao {-> New expressao_simples.dif(exp1.expressao_simples, exp2.expressao_simples)}|
+    {aditiva} soma_expressao {-> soma_expressao.expressao_simples};
 
-  comparacao =
-    {menor} menor |
-    {menorigual} menor_igual |
-    {maior} maior |
-    {maiorigual} maior_igual |
-    {igual} igualdade |
-    {dif} diferente;
+  soma_expressao {-> expressao_simples}=
+    {aditiva} soma_expressao mais termo {-> New expressao_simples.aditiva(soma_expressao.expressao_simples, termo.expressao_simples)}|
+    {subtrativa} soma_expressao menos termo {-> New expressao_simples.subtrativa(soma_expressao.expressao_simples, termo.expressao_simples)}|
+    {termo} termo {-> termo.expressao_simples};
 
-  soma_expressao =
-    {soma} soma_expressao mais termo |
-    {subtracao} soma_expressao menos termo |
-    {termo} termo;
+  termo {-> expressao_simples}=
+    {multiplicativa} termo mult fator {-> New expressao_simples.multiplicativa(termo.expressao_simples, fator.expressao_simples)}|
+    {divisao} termo div fator {-> New expressao_simples.divisao(termo.expressao_simples, fator.expressao_simples)}|
+    {fator} fator {-> fator.expressao_simples};
 
-  termo =
-    {mult} termo mult fator |
-    {div} termo div fator |
-    {fator} fator;
+  fator {-> expressao_simples}=
+    {expressao} parentese_e expressao parentese_d {-> expressao}|
+    {variavel} var {-> var}|
+    {chamada} chamada {-> chamada.expressao_simples}|
+    {numero} num {-> num};
 
-  fator =
-    {expressao} parentese_e expressao parentese_d |
-    {variavel} var |
-    {chamada} chamada |
-    {numero} num;
+  chamada {-> expressao_simples}=
+    idfunc args parentese_d {-> New expressao_simples.chamada(idfunc,args.expressao_dec)};
 
-  chamada =
-    idfunc args parentese_d;
+  args {-> expressao_dec}=
+    {lista} lista_args {-> [lista_args.expressao_dec]}|
+    {vazio} {-> []};
 
-  args =
-    {lista} lista_args |
-    {vazio} ;
+  lista_args {-> expressao_dec}=
+    {lista} lista_args virgula expressao {-> [expressao]}|
+    {expressao} expressao {-> expressao};
 
-  lista_args =
-    {lista} lista_args virgula expressao |
-    {expressao} expressao;
-
-/*
 Abstract Syntax Tree
 
 programa =
   declaracao+;
 
 declaracao =
-  {variavel_dec} variavel_dec |
-  {funcao_dec} tipo id parentese_e parametros parentese_d composto_dec;
-
-variavel_dec =
-  {nula} tipo id ponto_virgula |
-  {matriz} tipo id colchete_e num colchete_d ponto_virgula;
+  {variavel_dec} tipo var |
+  {funcao_dec} tipo id parametro* composto_dec|
+  {main} int main parametro* composto_dec;
 
 tipo =
   {t_void} void |
   {t_int} int |
   {t_str} string;
 
-parametros =
-  {parametros} parametros virgula parametro |
-  {parametro} parametro;
-
 parametro =
-  {simples} tipo id |
-  {matriz} tipo id parray;
-
-parray =
-  {base} colchete_e colchete_d |
-  {geral} parray colchete_e colchete_d;
+  tipo id;
 
 composto_dec =
-  {declaracoes_locais} chave_e variavel_dec* comando* chave_d;
+  declaracao* comando*;
 
 comando =
   //{input} input |
   //{output} |
   {expressao} expressao_dec |
   {comandos} composto_dec |
-  {if} if parentese_e expressao parentese_d composto_dec |
-  {if_then_else} if parentese_e expressao parentese_d [v]:composto_dec else [f]:composto_dec |
-  {bloco_while} while parentese_e expressao parentese_d composto_dec |
-  {retorno} return expressao ponto_virgula |
-  {retorno_vazio} return ponto_virgula;
+  {if} expressao composto_dec |
+  {if_then_else} expressao [v]:composto_dec [f]:composto_dec |
+  {bloco_while} expressao composto_dec |
+  {retorno} expressao |
+  {retorno_vazio} ;
 
 expressao_dec =
-  {expressao} expressao ponto_virgula |
-  {vazio} ponto_virgula;
+  {expressao} expressao |
+  {vazio} ;
 
 expressao =
-  {atribuicao} var atribuicao expressao_simples |
-  {atribuicao_str} var atribuicao str |
+  {atribuicao} var expressao_simples |
+  {atribuicao_str} var str |
   {simples} expressao_simples;
 
 var =
@@ -293,8 +279,11 @@ var =
   {id_array} id array;
 
 array =
-  {array_multiplo} array colchete_e expressao colchete_d |
-  {array_base} colchete_e expressao colchete_d;
+  {array_multiplo} array expressao |
+  {array_base} expressao;
+
+parray =
+  ;
 
 expressao_simples =
   {menor} [exp1]:expressao_simples [exp2]:expressao_simples|
@@ -307,16 +296,7 @@ expressao_simples =
   {subtrativa} [exp1]:expressao_simples [exp2]:expressao_simples|
   {multiplicativa} [exp1]:expressao_simples [exp2]:expressao_simples|
   {divisao} [exp1]:expressao_simples [exp2]:expressao_simples|
-  {expressao} parentese_e expressao parentese_d |
+  {expressao} expressao |
   {variavel} var |
-  {chamada} idfunc args parentese_d |
+  {chamada} idfunc expressao_dec|
   {numero} num;
-
-args =
-  {lista} lista_args |
-  {vazio} ;
-
-lista_args =
-  {lista} lista_args virgula expressao |
-  {expressao} expressao;
-*/
