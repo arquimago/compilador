@@ -141,6 +141,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAInputComando(AInputComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOutputComando(AOutputComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAExpressaoComando(AExpressaoComando node)
     {
         defaultCase(node);

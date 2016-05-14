@@ -310,6 +310,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outACompostoDec(node);
     }
 
+    public void inAInputComando(AInputComando node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAInputComando(AInputComando node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAInputComando(AInputComando node)
+    {
+        inAInputComando(node);
+        if(node.getVar() != null)
+        {
+            node.getVar().apply(this);
+        }
+        outAInputComando(node);
+    }
+
+    public void inAOutputComando(AOutputComando node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOutputComando(AOutputComando node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOutputComando(AOutputComando node)
+    {
+        inAOutputComando(node);
+        if(node.getTipo() != null)
+        {
+            node.getTipo().apply(this);
+        }
+        outAOutputComando(node);
+    }
+
     public void inAExpressaoComando(AExpressaoComando node)
     {
         defaultIn(node);

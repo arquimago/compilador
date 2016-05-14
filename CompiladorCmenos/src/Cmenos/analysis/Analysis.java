@@ -23,6 +23,8 @@ public interface Analysis extends Switch
     void caseANormalParametro(ANormalParametro node);
     void caseAVazioParametro(AVazioParametro node);
     void caseACompostoDec(ACompostoDec node);
+    void caseAInputComando(AInputComando node);
+    void caseAOutputComando(AOutputComando node);
     void caseAExpressaoComando(AExpressaoComando node);
     void caseAComandosComando(AComandosComando node);
     void caseAIfComando(AIfComando node);
